@@ -1,0 +1,76 @@
+[
+    {
+        "id_meuble": "a1",
+        "nom": "Table",
+        "description": "Lorem ipsum",
+        "dimensions": "44x80",
+        "couleur": "bois",
+
+        "img": [
+            "./assets/images_bd/produit.png",
+            "./assets/images_bd/produit.png"
+        ],
+        "prix_entree": "40",
+        "categorie": "meuble",
+        "localisation" : "Lyon",
+        "livraison": "oui",
+        "id_vendeur": "abcd",
+        "acquereurs": [
+            {
+                "id_acquereur": "abcd",
+                "montant": 10
+            }
+        ],
+        "favoris" : [
+            "abcd", "abc", "ert"
+        ]
+    },
+    {
+        "id_meuble": "a2",
+        "nom": "Chaise",
+        "description": "Lorem ipsum",
+        "dimension": "44x80",
+        "couleur": "noir",
+        "img": ["./assets/images_bd/produit.png"],
+        "prix_entree": "10",
+        "categorie": "meuble",
+        "localisation" : "Lyon",
+        "livraison": "oui",
+        "id_vendeur": "abcd",
+        "favoris" : [
+            "abcd", "abc"
+        ]
+    },
+    {
+        "id": "a3",
+        "nom": "Cafetière",
+        "description": "Lorem ipsum Lorem ipsumLorem ipsum",
+        "dimension": "44x80",
+        "couleur": "noire",
+        "img": ["./assets/images_bd/produit.png"],
+        "prix_entree": "5",
+        "categorie": "meuble",
+        "localisation" : "Lyon",
+        "livraison": "non",
+        "id_vendeur": "abcde",
+        "favoris" : [
+            "abcd"
+        ]
+    },
+    {  
+        "id": "a4",
+        "nom": "Four",
+        "description": "Lorem ipsum",
+        "dimension": "44x80",
+        "couleur": "gris",
+        "img": ["./assets/images_bd/produit.png"],
+        "prix_entree": "80",
+        "categorie": "Livres",
+        "localisation" : "Lyon",
+        "livraison": "non",
+        "id_vendeur": "abcde",
+        "favoris" : [
+            "abcd"
+        ]
+    }
+]

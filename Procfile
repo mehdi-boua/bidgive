@@ -1,0 +1,1 @@
+WEB: 'cd front-angular && ng serve'
