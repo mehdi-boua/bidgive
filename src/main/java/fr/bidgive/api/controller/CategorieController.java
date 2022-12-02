@@ -1,5 +1,6 @@
 package fr.bidgive.api.controller;
 
+import fr.bidgive.api.controller.returnBeans.CategorieDescReturn;
 import fr.bidgive.api.model.Categorie;
 import fr.bidgive.api.model.CategorieDescription;
 import fr.bidgive.api.model.CategorieDescriptionOption;
@@ -25,8 +26,10 @@ public class CategorieController {
     }
 
     @GetMapping("/{id}/desc")
-    public Iterable<CategorieDescription> getDesc(@PathVariable final int id){
-        return categorieService.getDesc(id);
+    public Iterable<CategorieDescReturn> getDesc(@PathVariable final int id){
+        List<CategorieDescReturn> list = new ArrayList<>();
+        categorieService.getDesc(id).forEach(desc -> list.add(new CategorieDescReturn(desc)));
+        return list;
     }
 
     @GetMapping("/{idcat}/{iddesc}/opt")
