@@ -27,7 +27,7 @@ public class CategorieController {
     }
 
     @GetMapping("/{idcat}/{iddesc}/opt")
-    public Iterable<CategorieDescriptionOption> getDescOptions(@PathVariable final int idcat, final int iddesc){
+    public Iterable<CategorieDescriptionOption> getDescOptions(@PathVariable final int idcat, @PathVariable final int iddesc){
         return categorieService.getDescOptions(iddesc);
     }
 }
