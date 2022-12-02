@@ -13,4 +13,16 @@ public class CategorieDescReturn {
         this.titre = categorieDescription.getTitre();
         this.description = categorieDescription.getDescription();
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getTitre() {
+        return titre;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 }
