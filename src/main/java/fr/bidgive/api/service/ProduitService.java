@@ -84,11 +84,11 @@ public class ProduitService {
 
         Notification n = new Notification();
         n.setIdUser(enchere.getIdEnchereur());
-        n.setTitre("Vous avez emporté une enchère");
+        n.setTitre("Enchère remportée !");
         n.setMessage("Félicitations!!!\n" +
                 "Vous avez remporté l'enchère pour "+ produit.getDesignation() + "\n" +
                 "Veuillez valider votre enchère, et prendre contact avec le donateur pour " +
-                "récupérer votre bien");
+                "récupérer votre bien.");
 
         notificationService.save(n);
     }
