@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @RequestMapping("/cat")
 public class CategorieController {
@@ -27,7 +30,9 @@ public class CategorieController {
     }
 
     @GetMapping("/{idcat}/{iddesc}/opt")
-    public Iterable<CategorieDescriptionOption> getDescOptions(@PathVariable final int idcat, @PathVariable final int iddesc){
-        return categorieService.getDescOptions(iddesc);
+    public Iterable<String> getDescOptions(@PathVariable final int idcat, @PathVariable final int iddesc){
+        List<String> list = new ArrayList<>();
+        categorieService.getDescOptions(iddesc).forEach(opt -> list.add(opt.getOption()));
+        return list;
     }
 }
