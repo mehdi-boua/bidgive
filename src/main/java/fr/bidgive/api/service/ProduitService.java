@@ -31,6 +31,10 @@ public class ProduitService {
         return produitRepo.activeProduits();
     }
 
+    public Iterable<Produit> getAllWaiting(){
+        return produitRepo.findWaiting();
+    }
+
     public Optional<Produit> getProduit(final int id){
         return produitRepo.findById(id);
     }

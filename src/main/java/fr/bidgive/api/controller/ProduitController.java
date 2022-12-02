@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -16,7 +18,11 @@ public class ProduitController {
 
     @GetMapping("/all")
     public Iterable<Produit> tous(){
-        return produitService.getAll();
+        List<Produit> list = new ArrayList<>();
+        produitService.getAllActive().forEach(list::add);
+        produitService.getAllWaiting().forEach(list::add);
+
+        return list;
     }
 
     @GetMapping("/{id}")
