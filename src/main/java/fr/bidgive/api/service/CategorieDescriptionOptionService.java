@@ -13,4 +13,8 @@ public class CategorieDescriptionOptionService {
     public Iterable<CategorieDescriptionOption> getAll(final int idCatDesc){
         return catDescOptionRepo.findAllByCatDescID(idCatDesc);
     }
+
+    public CategorieDescriptionOption save(CategorieDescriptionOption option){
+        return catDescOptionRepo.save(option);
+    }
 }

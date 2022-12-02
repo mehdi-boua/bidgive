@@ -1,6 +1,7 @@
 package fr.bidgive.api.service;
 
 import fr.bidgive.api.model.Enchere;
+import fr.bidgive.api.model.Notification;
 import fr.bidgive.api.model.Produit;
 import fr.bidgive.api.repository.ProduitRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class ProduitService {
 
     @Autowired
     EnchereService enchereService;
+
+    @Autowired
+    NotificationService notificationService;
 
     public Iterable<Produit> getAll(){
         return produitRepo.findAll();
@@ -45,16 +49,17 @@ public class ProduitService {
     private void updateEtat(){
         Iterable<Produit> produits = getAllActive();
         for(Produit p: produits){
-            long ellapsedTime = (System.currentTimeMillis() - p.getDebutEnchere().getTime()) /  (3600 * 1000);
-            System.out.println(ellapsedTime);
+            long elapsedTime = (System.currentTimeMillis() - p.getDebutEnchere().getTime()) /  (3600 * 1000);
+            System.out.println(elapsedTime);
 
-            if(ellapsedTime >= p.getDureeEnchere()){
+            if(elapsedTime >= p.getDureeEnchere()){
                 Optional<Enchere> e = enchereService.getEnchere(p.getId());
                 if(e.isPresent()){
                     Enchere enchere = e.get();
                     enchere.setEtat(0);
                     enchereService.saveEnchere(enchere);
-                }
+
+                    informWinner(enchere);                }
             }
         }
 
@@ -68,5 +73,19 @@ public class ProduitService {
             this.saveProduit(p);
 
         }
+    }
+
+    private void informWinner(Enchere enchere){
+        Produit produit = this.getProduit(enchere.getIdProduit()).get();
+
+        Notification n = new Notification();
+        n.setIdUser(enchere.getIdEnchereur());
+        n.setTitre("Vous avez emporté une enchère");
+        n.setMessage("Félicitations!!!\n" +
+                "Vous avez remporté l'enchère pour "+ produit.getDesignation() + "\n" +
+                "Veuillez valider votre enchère, et prendre contact avec le donateur pour " +
+                "récupérer votre bien");
+
+        notificationService.save(n);
     }
 }

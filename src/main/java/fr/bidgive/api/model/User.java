@@ -21,6 +21,8 @@ public class User {
 
     private String prenom;
 
+    private String pseudo;
+
     private String ville;
 
     private String mail;
