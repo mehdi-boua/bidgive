@@ -54,5 +54,10 @@ public class UserController {
         request.getSession().invalidate();
         return ResponseEntity.ok().build();
     }
+
+    @PostMapping("/newuser")
+    public User createUser(@RequestBody User user){
+        return userService.saveUser(user);
+    }
 }
 
