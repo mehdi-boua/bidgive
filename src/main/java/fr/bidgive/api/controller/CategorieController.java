@@ -4,6 +4,7 @@ import fr.bidgive.api.controller.returnBeans.CategorieDescReturn;
 import fr.bidgive.api.model.Categorie;
 import fr.bidgive.api.model.CategorieDescription;
 import fr.bidgive.api.model.CategorieDescriptionOption;
+import fr.bidgive.api.model.Produit;
 import fr.bidgive.api.service.CategorieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +22,11 @@ public class CategorieController {
     @CrossOrigin(origins="https://bid-give.web.app")
     public Iterable<Categorie> getAll(){
         return categorieService.getCategories();
+    }
+
+    @GetMapping("/{id}/produits")
+    public Iterable<Produit> categorieProducts(@PathVariable final int id){
+        return categorieService.findCategorieProducts(id);
     }
 
     @GetMapping("/{id}/desc")
