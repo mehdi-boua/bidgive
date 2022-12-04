@@ -27,7 +27,6 @@ public class UserController {
         Optional<User> u = userService.getUser(user);
 
         if(u.isEmpty()){
-            //TODO: replace redirect by link to login page
             return ResponseEntity.badRequest().build();
         }
         User usr = u.get();

@@ -11,4 +11,7 @@ import java.util.Optional;
 public interface UserRepo extends CrudRepository<User, Integer> {
     @Query("SELECT * from users WHERE mail = :mail;")
     public Optional<User> getUserByMail(String mail);
+
+    @Query("SELECT * from users WHERE pseudo = :pseudo;")
+    public Optional<User> getUserByPseudo(String pseudo);
 }

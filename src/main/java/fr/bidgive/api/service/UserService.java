@@ -13,6 +13,8 @@ public class UserService {
     UserRepo userRepo;
 
     public Optional<User> getUser(User user){
+        if(user.getPseudo() != null)
+            return userRepo.getUserByPseudo(user.getPseudo());
         return userRepo.getUserByMail(user.getMail());
     }
 
