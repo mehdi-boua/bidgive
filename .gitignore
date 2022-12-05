@@ -33,6 +33,3 @@ build/
 ### VS Code ###
 .vscode/
 
-
-### Personal ###
-src/main/resources/static/*
