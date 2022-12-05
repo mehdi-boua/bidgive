@@ -19,12 +19,14 @@ public class ProduitController {
     @CrossOrigin(origins = "*")
     @GetMapping("/all")
     public Iterable<Produit> tous(){
+        return produitService.getAll();
+    }
+/*    public Iterable<Produit> tous(){
         List<Produit> list = new ArrayList<>();
         produitService.getAllActive().forEach(list::add);
         produitService.getAllWaiting().forEach(list::add);
-
         return list;
-    }
+    }*/
 
     @CrossOrigin(origins = "*")
     @GetMapping("/{id}")
