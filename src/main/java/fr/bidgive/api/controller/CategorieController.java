@@ -19,7 +19,7 @@ public class CategorieController {
     @Autowired
     CategorieService categorieService;
 
-    @CrossOrigin(origins = "http://bidgive.web.app")
+    @CrossOrigin(origins = "*")
     @GetMapping("/all")
     public Iterable<Categorie> getAll(){
         return categorieService.getCategories();
