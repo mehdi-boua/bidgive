@@ -20,8 +20,8 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @GetMapping("/get")
     @CrossOrigin(origins = "*")
+    @GetMapping("/get")
     public UserReturn getUser(HttpServletRequest request){
         HttpSession session = request.getSession();
         String mail = "";
@@ -60,15 +60,8 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/logout")
     @CrossOrigin(origins = "*")
-    public ResponseEntity logout(HttpServletRequest request){
-        request.getSession().invalidate();
-        return ResponseEntity.ok().build();
-    }
-
     @PostMapping("/new")
-    @CrossOrigin(origins = "*")
     public ResponseEntity createUser(@RequestBody User user){
         if(user.getNom()== null)
             user.setNom("");
@@ -102,8 +95,15 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping("/update")
     @CrossOrigin(origins = "*")
+    @GetMapping("/logout")
+    public ResponseEntity logout(HttpServletRequest request){
+        request.getSession().invalidate();
+        return ResponseEntity.ok().build();
+    }
+
+    @CrossOrigin(origins = "*")
+    @PutMapping("/update")
     public ResponseEntity updateUser(@RequestBody User user){
         if(user.getNom() != null)
             user.setNom("");
@@ -137,4 +137,3 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 }
-
