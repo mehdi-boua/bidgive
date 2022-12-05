@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/ench")
+@RequestMapping("/ench")
 public class EnchereController {
     @Autowired
     EnchereService enchereService;

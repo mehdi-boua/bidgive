@@ -15,7 +15,7 @@ import java.net.http.HttpResponse;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/user")
 public class UserController {
     @Autowired
     UserService userService;
