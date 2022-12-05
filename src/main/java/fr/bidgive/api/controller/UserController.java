@@ -79,6 +79,9 @@ public class UserController {
 
         user.setSolde(0);
 
+        if(userService.saveUser(user) == null)
+            return ResponseEntity.internalServerError().build();
+
         return ResponseEntity.ok().build();
     }
 }
