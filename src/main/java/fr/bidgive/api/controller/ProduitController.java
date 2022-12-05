@@ -10,9 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://bidgive.web.app")
 @RestController
-@RequestMapping("/prod")
+@RequestMapping("/api/prod")
 public class ProduitController {
     @Autowired
     ProduitService produitService;

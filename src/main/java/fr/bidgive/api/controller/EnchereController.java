@@ -7,9 +7,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://bidgive.web.app")
 @RestController
-@RequestMapping("/ench")
+@RequestMapping("/api/ench")
 public class EnchereController {
     @Autowired
     EnchereService enchereService;
