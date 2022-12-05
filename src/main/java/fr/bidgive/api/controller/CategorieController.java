@@ -12,14 +12,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@CrossOrigin(origins = "http://bidgive.web.app")
+@CrossOrigin(origins = "http://bidgive.web.app/*")
 @RestController
 @RequestMapping("/cat")
 public class CategorieController {
     @Autowired
     CategorieService categorieService;
 
-    @CrossOrigin(origins = "*")
     @GetMapping("/all")
     public Iterable<Categorie> getAll(){
         return categorieService.getCategories();
