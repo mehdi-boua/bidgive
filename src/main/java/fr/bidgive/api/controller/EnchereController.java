@@ -15,11 +15,13 @@ public class EnchereController {
     EnchereService enchereService;
 
     @GetMapping("/all")
+    @CrossOrigin(origins = "*")
     public Iterable<Enchere> getAll(){
         return enchereService.getAll();
     }
 
     @PostMapping("/new")
+    @CrossOrigin(origins = "*")
     public Enchere createEnchere(@RequestBody Enchere enchere){
         Optional<Enchere> e = enchereService.getEnchere(enchere.getIdProduit());
         if(e.isPresent()){
@@ -45,6 +47,7 @@ public class EnchereController {
     }
 
     @DeleteMapping("/delete")
+    @CrossOrigin(origins = "*")
     public void deleteEnchere(@RequestBody Enchere enchere){
         enchereService.deleteEnchere(enchere);
     }

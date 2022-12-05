@@ -12,23 +12,25 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@CrossOrigin(origins = "https://bidgive.web.app/*")
 @RestController
 @RequestMapping("/cat")
 public class CategorieController {
     @Autowired
     CategorieService categorieService;
 
+    @CrossOrigin(origins = "*")
     @GetMapping("/all")
     public Iterable<Categorie> getAll(){
         return categorieService.getCategories();
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping("/{id}/produits")
     public Iterable<Produit> categorieProducts(@PathVariable final int id){
         return categorieService.findCategorieProducts(id);
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping("/{id}/desc")
     public Iterable<CategorieDescReturn> getDesc(@PathVariable final int id){
         List<CategorieDescReturn> list = new ArrayList<>();
@@ -36,6 +38,7 @@ public class CategorieController {
         return list;
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping("/{idcat}/{iddesc}/opt")
     public Iterable<String> getDescOptions(@PathVariable final int idcat, @PathVariable final int iddesc){
         List<String> list = new ArrayList<>();

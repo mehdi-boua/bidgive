@@ -7,24 +7,26 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://bidgive.web.app")
 @RestController
 @RequestMapping("/association")
 public class AssociationController {
     @Autowired
     AssociationService associationService;
 
+    @CrossOrigin(origins = "*")
     @GetMapping("/all")
     public Iterable<Association> getAssociations(){
         return associationService.getAssociations();
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping("/{id}")
     public Association getAssociation(@PathVariable("id") final int id){
         Optional<Association> assoc = associationService.getAssociation(id);
         return assoc.orElse(null);
     }
 
+    @CrossOrigin(origins = "*")
     @PutMapping("/{id}")
     public Association updateAssociation(@PathVariable("id") final int id, @RequestBody Association assoc){
         Optional<Association> a = associationService.getAssociation(id);
@@ -49,6 +51,7 @@ public class AssociationController {
         return null;
     }
 
+    @CrossOrigin(origins = "*")
     @PostMapping("/new")
     public Association createAssociation(@RequestBody Association assoc){
         return associationService.saveAssociation(assoc);

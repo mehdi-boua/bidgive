@@ -17,6 +17,7 @@ public class ProduitController {
     @Autowired
     ProduitService produitService;
 
+    @CrossOrigin(origins = "*")
     @GetMapping("/all")
     public Iterable<Produit> tous(){
         List<Produit> list = new ArrayList<>();
@@ -26,11 +27,13 @@ public class ProduitController {
         return list;
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping("/{id}")
     public Optional<Produit> un(@PathVariable final int id){
         return produitService.getProduit(id);
     }
 
+    @CrossOrigin(origins = "*")
     @PostMapping("/new")
     public Produit createProduit(@RequestBody Produit produit){
         if(produit.getDesignation() == null)

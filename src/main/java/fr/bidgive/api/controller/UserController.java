@@ -14,7 +14,6 @@ import javax.servlet.http.HttpSession;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://bidgive.web.app")
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -22,6 +21,7 @@ public class UserController {
     UserService userService;
 
     @GetMapping("/get")
+    @CrossOrigin(origins = "*")
     public UserReturn getUser(HttpServletRequest request){
         HttpSession session = request.getSession();
         String mail = "";
@@ -33,6 +33,7 @@ public class UserController {
     }
 
     @PostMapping("/auth")
+    @CrossOrigin(origins = "*")
     public ResponseEntity auth(@RequestBody User user, HttpServletRequest request){
         Optional<User> u = userService.getUser(user);
 
@@ -60,12 +61,14 @@ public class UserController {
     }
 
     @GetMapping("/logout")
+    @CrossOrigin(origins = "*")
     public ResponseEntity logout(HttpServletRequest request){
         request.getSession().invalidate();
         return ResponseEntity.ok().build();
     }
 
     @PostMapping("/new")
+    @CrossOrigin(origins = "*")
     public ResponseEntity createUser(@RequestBody User user){
         if(user.getNom()== null)
             user.setNom("");
@@ -100,6 +103,7 @@ public class UserController {
     }
 
     @PutMapping("/update")
+    @CrossOrigin(origins = "*")
     public ResponseEntity updateUser(@RequestBody User user){
         if(user.getNom() != null)
             user.setNom("");
