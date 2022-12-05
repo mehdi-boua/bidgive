@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "http://bid-give.web.app")
 @RestController
 @RequestMapping("/prod")
 public class ProduitController {

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin(origins = "http://bid-give.web.app")
 @RestController
 @RequestMapping("/cat")
 public class CategorieController {
@@ -19,7 +20,6 @@ public class CategorieController {
     CategorieService categorieService;
 
     @GetMapping("/all")
-    @CrossOrigin(origins="https://bid-give.web.app")
     public Iterable<Categorie> getAll(){
         return categorieService.getCategories();
     }

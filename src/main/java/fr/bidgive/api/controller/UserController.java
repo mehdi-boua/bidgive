@@ -1,5 +1,6 @@
 package fr.bidgive.api.controller;
 
+import fr.bidgive.api.controller.returnBeans.UserReturn;
 import fr.bidgive.api.model.User;
 import fr.bidgive.api.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +14,23 @@ import javax.servlet.http.HttpSession;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
+@CrossOrigin(origins = "http://bid-give.web.app")
 @RestController
 @RequestMapping("/user")
 public class UserController {
     @Autowired
     UserService userService;
+
+    @GetMapping("/get")
+    public UserReturn getUser(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        String mail = "";
+        mail = (String) session.getAttribute("mail");
+        Optional<User> u = userService.getUser(mail);
+
+        return u.map(UserReturn::new).orElse(null);
+
+    }
 
     @PostMapping("/auth")
     public ResponseEntity auth(@RequestBody User user, HttpServletRequest request){
@@ -34,6 +47,7 @@ public class UserController {
         HttpSession session = request.getSession();
         session.setAttribute("prenom", usr.getPrenom());
         session.setAttribute("nom", usr.getNom());
+        session.setAttribute("pseudo", usr.getPseudo());
         session.setAttribute("idUser", usr.getId());
         session.setAttribute("mail", usr.getMail());
         session.setAttribute("solde", usr.getSolde());
@@ -51,7 +65,7 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/newuser")
+    @PostMapping("/new")
     public ResponseEntity createUser(@RequestBody User user){
         if(user.getNom()== null)
             user.setNom("");
@@ -80,6 +94,40 @@ public class UserController {
         user.setSolde(0);
 
         if(userService.saveUser(user) == null)
+            return ResponseEntity.internalServerError().build();
+
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity updateUser(@RequestBody User user){
+        if(user.getNom() != null)
+            user.setNom("");
+
+        if(user.getPrenom()!= null)
+            user.setPrenom("");
+
+        if(user.getPseudo()!= null || "".equals(user.getPassword()))
+            user.setPseudo(user.getNom().toLowerCase().charAt(0) + user.getPrenom().toLowerCase());
+
+        if(user.getVille() != null)
+            user.setVille("");
+
+        if(user.getAdresse() != null)
+            user.setAdresse("");
+
+        if(user.getPassword() != null || "".equals(user.getPassword()))
+            user.setPassword(user.getPrenom().toLowerCase());
+
+        if(user.getMail() != null || "".equals(user.getMail()))
+            user.setMail(user.getPrenom()+"@mail.fr");
+
+        if(user.getTelephone() != null)
+            user.setTelephone("");
+
+        user.setSolde(0);
+
+        if(userService.saveUser(user) != null)
             return ResponseEntity.internalServerError().build();
 
         return ResponseEntity.ok().build();
