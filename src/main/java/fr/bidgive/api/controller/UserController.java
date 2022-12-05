@@ -5,10 +5,7 @@ import fr.bidgive.api.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-@Controller
+@RestController
 @RequestMapping("/user")
 public class UserController {
     @Autowired
@@ -55,8 +52,34 @@ public class UserController {
     }
 
     @PostMapping("/newuser")
-    public User createUser(@RequestBody User user){
-        return userService.saveUser(user);
+    public ResponseEntity createUser(@RequestBody User user){
+        if(user.getNom()== null)
+            user.setNom("");
+
+        if(user.getPrenom()== null)
+            user.setPrenom("");
+
+        if(user.getPseudo()== null || "".equals(user.getPassword()))
+            user.setPseudo(user.getNom().toLowerCase().charAt(0) + user.getPrenom().toLowerCase());
+
+        if(user.getVille()== null)
+            user.setVille("");
+
+        if(user.getAdresse() == null)
+            user.setAdresse("");
+
+        if(user.getPassword()== null || "".equals(user.getPassword()))
+            user.setPassword(user.getPrenom().toLowerCase());
+
+        if(user.getMail()== null || "".equals(user.getMail()))
+            user.setMail(user.getPrenom()+"@mail.fr");
+
+        if(user.getTelephone() == null)
+            user.setTelephone("");
+
+        user.setSolde(0);
+
+        return ResponseEntity.ok().build();
     }
 }
 
