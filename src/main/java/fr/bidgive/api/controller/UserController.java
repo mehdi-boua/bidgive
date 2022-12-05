@@ -32,8 +32,8 @@ public class UserController {
 
     }
 
-    @PostMapping("/auth")
     @CrossOrigin(origins = "*")
+    @PostMapping("/auth")
     public ResponseEntity auth(@RequestBody User user, HttpServletRequest request){
         Optional<User> u = userService.getUser(user);
 
