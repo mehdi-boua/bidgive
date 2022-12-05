@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://bid-give.web.app")
+@CrossOrigin(origins = "http://bidgive.web.app")
 @RestController
 @RequestMapping("/user")
 public class UserController {

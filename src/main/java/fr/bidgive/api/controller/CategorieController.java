@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@CrossOrigin(origins = "http://bid-give.web.app")
+@CrossOrigin(origins = "http://bidgive.web.app")
 @RestController
 @RequestMapping("/cat")
 public class CategorieController {
