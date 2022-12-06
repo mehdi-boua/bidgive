@@ -7,11 +7,8 @@
         "couleur": "bois",
 
         "img": [
-            "./assets/images_bd/produit.png",
-            "./assets/images_bd/produit.png",
-            "./assets/images_bd/produit.png",
-            "./assets/images_bd/produit.png",
-            "./assets/images_bd/produit.png"
+            "./assets/images_bd/table.jpg",
+            "./assets/images_bd/table.jpg"
         ],
         "prix_entree": "40",
         "categorie": "Meubles",
@@ -34,7 +31,7 @@
         "description": "Lorem ipsum",
         "dimension": "44x80",
         "couleur": "noir",
-        "img": ["./assets/images_bd/produit.png"],
+        "img": ["./assets/images_bd/chaise.jpg"],
         "prix_entree": "10",
         "categorie": "Meubles",
         "localisation" : "Grenoble",
@@ -50,7 +47,7 @@
         "description": "Lorem ipsum Lorem ipsumLorem ipsum",
         "dimension": "44x80",
         "couleur": "noire",
-        "img": ["./assets/images_bd/produit.png"],
+        "img": ["./assets/images_bd/cafetiere.jpg"],
         "prix_entree": "5",
         "categorie": "Électroménager",
         "localisation" : "Annecy",
@@ -66,7 +63,7 @@
         "description": "Lorem ipsum",
         "dimension": "44x80",
         "couleur": "gris",
-        "img": ["./assets/images_bd/produit.png"],
+        "img": ["./assets/images_bd/four.jpg"],
         "prix_entree": "80",
         "categorie": "Électroménager",
         "localisation" : "Lyon",
