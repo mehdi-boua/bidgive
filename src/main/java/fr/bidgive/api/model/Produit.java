@@ -41,6 +41,6 @@ public class Produit {
 
     private @Column("idAssociation") int idAssociation;
 
-    private @Column("idLivraison") int idLivrison;
+    private @Column("idLivraison") boolean idLivrison;
 
 }
