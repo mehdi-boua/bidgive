@@ -1,0 +1,9 @@
+node_modules
+.angular
+.DS_Store
+firebase.json
+.firebaserc
+.firebase/
+src/environnement/
+.github/
+package-lock.json

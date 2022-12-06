@@ -1,0 +1,326 @@
+@import '../../assets/vars.scss';
+@import '../../assets/button-livraison.scss';
+
+.content {
+    position: relative;
+    margin-bottom: 90px;
+
+    .bloc-image {
+        &__img {
+            width: 100%;
+            height: 45vh;
+            object-fit: contain;
+
+            @media screen and (max-width: 768px) {
+                object-fit: cover;
+            }
+        }
+
+        &__gallery {
+            display: flex;
+            gap: 8px;
+
+            &-item {
+                max-width: 25vw;
+                height: 15vw;
+                object-fit: cover;
+
+                @media screen and (max-width: 768px) {
+                    height: 20vw;
+                }
+            }
+        }
+    }
+
+    .bloc-general {
+        margin: 20px 2vw 0;
+
+        .line {
+            display: flex;
+            max-width: 50vw;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: 15px;
+
+            @media screen and (max-width: 1023px) {
+                max-width: 75vw;
+            }
+
+            @media screen and (max-width: 768px) {
+                max-width: 96vw;
+            }
+        }
+
+        &__title {
+            font-size: 26px;
+        }
+
+        &__options {
+            display: flex;
+
+            gap: 20px;
+
+            img {
+                width: 25px;
+                height: 25px;
+                transition: transform, .2s;
+
+                &:last-of-type {
+                    width: 22px;
+                    height: 22px;
+                }
+
+                &:hover {
+                    transform: scale(1.1);
+                    cursor: pointer;
+                }
+            }
+        }
+
+        &__date {
+            font-size: 18px;
+        }
+
+        &__price {
+            margin-top: 15px;
+            color: $primary;
+            font-size: 22px;
+        }
+
+        &__price-enter {
+            font-size: 18px;
+        }
+
+        &__time {
+            margin-top: 30px;
+        }
+
+        &__time,
+        &__bid,
+        &__user {
+            margin-bottom: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            font-size: 16px;
+
+            img {
+                margin-right: 8px;
+                width: 20px;
+                height: 20px;
+            }
+
+            span {
+                color: $primary;
+            }
+        }
+    }
+
+    .bloc-garanty,
+    .bloc-vendor {
+        padding: 20px;
+        border: .5px solid $grey;
+        border-radius: 12px;;
+        background-color: $light-purple;
+        max-width: 50vw;
+        margin: 30px 2vw 0;
+
+        @media screen and (max-width: 1023px) {
+            max-width: 75vw;
+        }
+
+        @media screen and (max-width: 768px) {
+            max-width: 96vw;
+        }
+    }
+
+    .bloc-garanty {
+        &__item {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            margin-bottom: 10px;
+
+            img {
+                margin-right: 20px;
+            }
+        }
+    }
+
+    .bloc-vendor {
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        &__img {
+            margin-right: 20px;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+        }
+
+        &__name {
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        &__give {
+            font-size: 16px;
+        }
+
+        &__link {
+            position: absolute;
+            right: 40px;
+            top: 50%;
+            width: 15px;
+            height: 20px;
+            transform: translateY(-10px);
+            transition: transform, .2s;;
+
+            &:hover {
+                transform: translateY(-10px)scale(1.3);
+            }
+        }
+    }
+
+    .bloc-informations {
+        max-width: 50vw;
+        margin: 50px 2vw 0;
+
+        &__description {
+            border-bottom: .5px solid $grey;
+            padding-bottom: 20px;
+
+            &-content {
+                font-size: 20px;
+            }
+        }
+
+        &__name {
+            margin: 30px 0 20px;
+            font-size: 26px;
+            font-weight: 500;
+        }
+
+        &__list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+
+            &-title {
+                color: $grey;
+                font-size: 18px;
+            }
+
+            &-text {
+                font-size: 20px;
+                font-weight: 500;
+            }
+        }
+
+        @media screen and (max-width: 1023px) {
+            max-width: 75vw;
+        }
+
+        @media screen and (max-width: 768px) {
+            max-width: 96vw;
+        }
+    }
+
+    .bloc-localisation {
+        margin: 40px 2vw 0;
+        padding-bottom: 20px;
+        border-bottom: .5px solid $grey;
+
+        &__title {
+            font-size: 26px;
+        }
+
+        &__location {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+    }
+
+    .bloc-mentions {
+        margin: 30px 2vw 0;
+        &__item {
+            display: flex;
+            color: $primary;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            margin-bottom: 10px;
+
+            img {
+                margin-right: 8px;
+            }
+            
+            &:hover {
+                cursor: pointer;
+                text-decoration: underline;
+            }
+        }
+    }
+
+    @media screen and (max-width: 360px) {
+        margin-bottom: 120px;
+    }
+
+    .footer {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        z-index: 1000;
+        position: fixed;
+        bottom: 0;
+        width: 100vw;
+        min-height: 80px;
+        background-color: $light-purple;
+        box-shadow: -8px 18px 10px 14px $black;
+        font-size: 16px;
+        font-weight: 500;
+        padding-right: 25px;
+
+        a {
+            text-decoration: none;
+            padding: 12px 50px;
+            border-radius: 100px;
+
+            @media screen and (max-width: 480px) {
+                padding: 7px 35px;
+            }
+        }
+
+        .contacter {
+            border: 1px solid $grey;
+            color: $primary;
+            transition: color, background-color, .3s;
+
+            &:hover {
+                color: $white;
+                background-color: $primary;
+            }
+        }
+
+        .encherir {
+            border: 1px solid $primary;
+            color: $white;
+            background-color: $primary;
+            transition: color, background-color, border-color, .3s;
+
+            &:hover {
+                color: $primary;
+                background-color: transparent;
+                border-color: $primary
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            gap: 15px;
+        }
+    }
+}

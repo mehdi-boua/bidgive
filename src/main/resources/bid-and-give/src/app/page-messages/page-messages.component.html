@@ -1,0 +1,56 @@
+<app-header title="Mes messages"></app-header>
+
+<div class="content">
+    <div class="container">
+        <button [ngClass]="{'active': varencours == true, 'not-active': varencours == false}" (click)="filtre()"> Messages</button>
+        <button [ngClass]="{'active': varencours == false, 'not-active': varencours == true}" (click)="filtre()"> Notifications</button>
+    </div>
+    <p class="info">Cliquez pour afficher le contenu supplémentaire</p>
+
+    <div *ngIf="messages ==true" class="content__messages">
+        <div *ngFor="let item of messagesList; let index=index" class="content__messages-item" [ngClass]="{'non-lu' : item.statut != 'lu'}" (click)="toggleMessage(index)">
+            <figure class="figure">
+                <img src="{{item.image}}"  class="figure__image"/>
+            </figure>
+
+            <div class="bloc-text">
+                <p class="title"> {{item.expediteur}}
+                    <span class="subtitle"> {{item.enchere}}</span>
+                </p>
+                <p class="hide" id="texte{{index}}"><span *ngFor="let msg of item.msg"> {{msg}}</span></p>
+            </div>
+
+            <div class="infos">
+                <p class="date"> {{item.date}}</p>
+                <div  *ngIf="item.statut != 'lu'" class="elem-notif">
+                    <img src="./assets/images_app/icon-mail-purple.svg" class="icon"/>
+                    <span class="notif">{{item.msg.length}}</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div *ngIf="messages==false"class="content__notification">
+        <div *ngFor="let item of notifList; let index=index"  class="content__notification-item"  [ngClass]="{'non-lu' : item.statut != 'lu'}" (click)="toggleNotification(index)">
+            <figure class="figure">
+                <img src="{{item.image}}"  class="figure__image"/>
+            </figure>
+
+            <div class="bloc-text">
+                <p class="title"> {{item.title}}
+                    <span class="subtitle"> {{item.description}}</span>
+                </p>
+                <p class="hide" id="texte{{index}}"> {{item.texte}}</p>
+            </div>
+
+            <div class="infos">
+                <p class="date"> {{item.date}}.</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<app-user-nav></app-user-nav>

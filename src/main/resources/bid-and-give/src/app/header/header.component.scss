@@ -1,0 +1,65 @@
+@import '../../assets/vars.scss';
+
+.header {  
+    background-color: $light-purple;
+    padding: 20px 0;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+
+    &__title {
+        margin: 0;
+        font-weight: 400;
+
+        @media screen and (max-width: 768px) {
+          font-size: 22px; 
+        }
+    }
+
+    button {
+      border: 0;
+      background-color: unset;
+      margin-left: 25px;
+      display: flex;
+      align-items: center;
+      transition: transform, .3s;
+      &:hover {
+        transform: scale(1.2);
+        cursor:pointer;
+      }
+
+      img {
+        height: 15px;
+      }
+    }
+
+    .close {
+      margin-right: 25px;
+      display: flex;
+      align-items: center;
+      transition: transform, .3s;
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+}
+
+.solo {
+  justify-content: center;
+}
+
+.duo {
+  position: relative; 
+  justify-content: center;
+  
+  .close {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-8px);
+    right: 25px;
+
+    &:hover {
+      transform: translateY(-8px)scale(1.2);
+    }
+  }
+}

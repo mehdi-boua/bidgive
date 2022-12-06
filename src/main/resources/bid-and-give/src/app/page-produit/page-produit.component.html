@@ -1,0 +1,160 @@
+<app-header *ngIf="elemProduit != undefined && elemProduit.nom != undefined" title="{{elemProduit.nom}}" produit="oui">
+</app-header>
+
+<div class="content">
+    <div class="bloc-image">
+        <figure class="bloc-image__figure">
+            <img *ngIf="elemProduit != undefined && elemProduit.img!= undefined" class="bloc-image__img"
+                src="{{elemProduit.img[0]}}" />
+        </figure>
+        <div *ngIf="elemProduit != undefined && elemProduit.img!= undefined" class="bloc-image__gallery">
+            <figure *ngFor="let img of elemProduit.img | slice:1; let index = index; ">
+                <img class="bloc-image__gallery-item" src="{{elemProduit.img[index]}}" />
+            </figure>
+        </div>
+    </div>
+
+    <div class="bloc-general">
+        <div class="line">
+            <p *ngIf="elemProduit != undefined && elemProduit.nom!= undefined" class="bloc-general__title">
+                {{elemProduit.nom}}</p>
+
+            <div class="bloc-general__options">
+                <img class="bloc-general__options-star" src="./assets/images_app/icon-star.svg" />
+                <img class="bloc-genral__options-share" src="./assets/images_app/icon-share.svg" />
+            </div>
+        </div>
+
+        <p class="bloc-general__date">17/10/2022 à 14:59</p>
+
+        <div class="line">
+            <p class="bloc-general__price">
+                50€
+                <span *ngIf="elemProduit != undefined && elemProduit.prix_entree!= undefined"
+                    class="bloc-general__price-enter">
+                    (prix initial: {{elemProduit.prix_entree}}€)
+                </span>
+            </p>
+
+            <div *ngIf='elemProduit != undefined && elemProduit.livraison == "oui"' class="option-livraison">Livraison
+            </div>
+        </div>
+
+        <p class="bloc-general__time">
+            <img src="./assets/images_app/icon-hour.svg">
+            Temps restant : <span>1 jour, 11h32m43s </span>
+        </p>
+
+        <p class="bloc-general__bid">
+            <img src="./assets/images_app/icon-bid.svg">
+            Nombres d'enchères : <span *ngIf="elemProduit != undefined && elemProduit.acquereurs!= undefined">
+                {{elemProduit.acquereurs.length}} </span>
+        </p>
+
+        <p class="bloc-general__user">
+            <img src="./assets/images_app/icon-profile.svg">
+            Meilleur enchérisseur: <span> TODO </span>
+        </p>
+    </div>
+
+    <div class="bloc-garanty">
+        <ul>
+            <li class="bloc-garanty__item">
+                <img src="./assets/images_app/icon-car.svg">
+                <p>Faites-vous livrer à partir de 3,99 € ou choisissez la remise en main propre</p>
+            </li>
+
+            <li class="bloc-garanty__item">
+                <img src="./assets/images_app/icon-protection.svg">
+                <p>Bénéficiez de la protection acheteurs</p>
+            </li>
+
+            <li class="bloc-garanty__item">
+                <img src="./assets/images_app/icon-lock.svg">
+                <p>Paiement sécurisé</p>
+            </li>
+        </ul>
+    </div>
+
+    <div class="bloc-vendor">
+        <figure>
+            <img class="bloc-vendor__img" src="./assets/images_bd/produit.png">
+        </figure>
+
+        <div class="bloc-vendor__infos">
+            <p class="bloc-vendor__name">Nom du vendeur TODO</p>
+            <p class="bloc-vendor__give"> 11 donations</p>
+        </div>
+
+        <a class="bloc-vendor__link">
+            <img src="./assets/images_app/icon-chevron-right.svg">
+        </a>
+    </div>
+
+    <div class="bloc-informations">
+        <div class="bloc-informations__description"
+            *ngIf="elemProduit != undefined && elemProduit.description!= undefined">
+            <p class="bloc-informations__name">Description</p>
+            <p class="bloc-informations__description-content"> {{elemProduit.description}}</p>
+        </div>
+        <div class="bloc-informations__criteres">
+            <p class="bloc-informations__name">Critères</p>
+
+            <div class="bloc-informations__list">
+                <div>
+                    <p class="bloc-informations__list-title">Couleur</p>
+                    <p class="bloc-informations__list-text">Rouge</p>
+                </div>
+                <div>
+                    <p class="bloc-informations__list-title">Taille</p>
+                    <p class="bloc-informations__list-text">XS</p>
+                </div>
+                <div>
+                    <p class="bloc-informations__list-title">Marque</p>
+                    <p class="bloc-informations__list-text">Lacoste</p>
+                </div>
+                <div>
+                    <p class="bloc-informations__list-title">Dimensions</p>
+                    <p class="bloc-informations__list-text"
+                        *ngIf="elemProduit != undefined && elemProduit.dimensions!= undefined">
+                        {{elemProduit.dimensions}}</p>
+                </div>
+                <div>
+                    <p class="bloc-informations__list-title">TODO</p>
+                    <p class="bloc-informations__list-text">TODO</p>
+                </div>
+                <div>
+                    <p class="bloc-informations__list-title">TODO</p>
+                    <p class="bloc-informations__list-text">TODO</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bloc-localisation">
+        <p class="bloc-localisation__title">Localisation</p>
+        <address class="bloc-localisation__location"
+            *ngIf="elemProduit != undefined && elemProduit.localisation!= undefined"> {{elemProduit.localisation}}
+        </address>
+
+        <app-map></app-map>
+
+    </div>
+
+    <div class="bloc-mentions">
+        <a class="bloc-mentions__item">
+            <img src="./assets/images_app/icon-attention.svg">
+            <p>Signaler l’annonce</p>
+        </a>
+
+        <a class="bloc-mentions__item">
+            <img src="./assets/images_app/icon-info.svg">
+            <p>Vos droits et obligations</p>
+        </a>
+    </div>
+
+    <div class="footer">
+        <a class="contacter">Contacter</a>
+        <a class="encherir" routerLink="/encherir"> Encherir</a>
+    </div>
+</div>

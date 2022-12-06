@@ -1,0 +1,59 @@
+<app-header title="Mon compte"></app-header>
+
+<div class="content">
+    <div class="bloc-card">
+        <div class="card-header">
+            <img  class="img-profil" src="{{user[0].image}}" />
+            <div class="informations">
+                <p  class="informations__pseudo">{{user[0].pseudo}}</p>
+                <div class="informations__score">
+                    <img  *ngFor='let in of [0,1,2,3];let i = index' src="./assets/images_app/icon-star-full.svg"/>
+                    <img src="./assets/images_app/icon-star.svg"  />
+                </div>
+                <a class="informations__link" routerLink="/home" >
+                    <img src="./assets/images_app/icon-chevron-right.svg">
+                </a>
+            </div>
+        </div>
+    
+        <div class="card-portefeuille">
+            <p class="card-portefeuille__title">Porte monnaie</p>
+            <span  class="card-portefeuille__solde">
+                {{user[0].solde}} €
+            </span>
+            <p class="card-portefeuille__complement">Solde disponible actuellement pour enchérir</p>
+            
+            <a class="card-portefeuille__link" routerLink="/home" >
+                <img src="./assets/images_app/icon-chevron-right.svg">
+            </a>
+        </div>
+    </div>
+
+    <ul class="options">
+        <li class="options__item" (click)="toggleMore($event)">
+            <p class="options__item-title"> 
+                <img class="options__item-icon" src="./assets/images_app/icon-list.svg" alt="icon enchère">
+                Mes enchères
+            </p>
+            <div class="options__item-more hide" id="enc">TODO</div>
+        </li>
+        <li class="options__item" (click)="toggleMore($event)">
+            <p class="options__item-title">
+                <img class="options__item-icon" src="./assets/images_app/icon-shop.svg" alt="icon transactions">
+                Mes transactions
+            </p>
+            <div class="options__item-more hide" id="tra">TODO</div>
+        </li>
+        <li class="options__item" (click)="toggleMore($event)">
+            <p class="options__item-title">
+                <img class="options__item-icon" src="./assets/images_app/icon-setting.svg" alt="icon paramètres">
+                Paramètres
+            </p>
+            <div class="options__item-more hide" id="par">TODO</div>
+        </li>
+        <li class="options__item deconnexion">
+            <p class="options__item-title" (click)="disconnect()">Déconnexion</p>
+        </li>
+    </ul>
+</div>
+<app-user-nav></app-user-nav>

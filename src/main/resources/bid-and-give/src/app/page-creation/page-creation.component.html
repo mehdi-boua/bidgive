@@ -1,0 +1,71 @@
+<app-header title="Créer une enchère" enchere="oui"></app-header>
+
+<div class="page-creation">
+    <div class="bar">
+        <div class="progression"></div>
+    </div>
+
+    <div class="content">
+        <div>
+            <h2 class="title">Commençons à créer votre enchère</h2>
+            <p>Un titre précis et la bonne catégorie, c’est le meilleur moyen pour que vos futurs enchérisseurs voient
+                votre annonce !</p>
+        </div>
+
+        <form>
+            <fieldset (change)="verifEtape1(select, title)">
+                <legend>Quel est le titre de votre enchère ?</legend>
+                <input type="text" name="title" placeholder="table en bois" [(ngModel)]="title"
+                    (click)="verifEtape1(select, title)">
+            </fieldset>
+
+            <fieldset (change)="verifEtape1(select, title)">
+                <legend>Choisissez votre catégorie</legend>
+
+                <select required [(ngModel)]="select" (ngModelChange)="getcatdesc($event)" name="selectcategorie">
+                    <option value="">Catégorie</option>
+                    <option *ngFor="let item of categories; let index= index;" [ngValue]="item.id" id="{{item.id}}">{{item.titre}}</option>
+                </select>
+            </fieldset>
+
+            <fieldset *ngIf="select=='Vêtements'">
+                <legend>Indiquez la taille</legend>
+                <select required [(ngModel)]="selectTaille">
+                    <option value="">Taille</option>
+                    <option *ngFor="let item of tailles; let index= index;" [ngValue]="item"> {{item}}</option>
+                </select>
+            </fieldset>
+
+            <fieldset *ngFor="let elem of catdesc">
+                <legend>{{elem.titre}}</legend>
+                <select>
+                    <option *ngFor="let opt of descOpt[elem.id]">{{opt}}</option>
+                </select>
+            </fieldset>
+
+            <fieldset *ngIf="select=='Meubles' || select=='Électroménager' ">
+                <legend>Indiquez les dimensions de votre don </legend>
+                <input type="text" />
+            </fieldset>
+
+            <fieldset *ngIf="select=='Livres' || select=='Électroménager' ">
+                <legend>Indiquez l'auteur </legend>
+                <input type="text" />
+            </fieldset>
+            <fieldset *ngIf="select=='Livres' || select=='Électroménager' ">
+                <legend>Indiquez l'édition </legend>
+                <input type="text" />
+            </fieldset>
+            <fieldset *ngIf="select=='Livres' || select=='Électroménager' ">
+                <legend>Indiquez l'année de parution </legend>
+                <input type="text" />
+            </fieldset>
+        </form>
+    </div>
+
+    <div class="footer">
+        <button [ngClass]="{'disabled': disabled == true}">Continuer</button>
+    </div>
+
+
+</div>

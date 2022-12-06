@@ -1,0 +1,138 @@
+
+@import '../../assets/vars.scss';
+
+.wrapper-left {
+    padding-left: 25px;
+    min-height: 100vh;
+
+    @media screen and (max-width: 360px) {
+       padding-left: 10px;
+    }
+}
+
+.header {
+    margin: 10px 0;
+    text-align: center;
+
+    &__logo {
+        height: 15vh;
+        width: auto;
+    }
+}
+
+.home-nav {
+    .bloc-search {
+        position: relative;
+
+        .bloc-reset {
+            position: relative;
+            display: inline-block;
+            margin: 5px 0;
+
+            @media screen and (max-width: 360px) {
+                display: block;
+            }
+        }
+
+        .reset {
+            margin-left: 10px;
+            color: $grey;
+            border: 0;
+            background-color: $white;
+            font-size: 14px;
+            padding: 0;
+
+            &::before {
+                content:'';
+                position: absolute;
+                display: block;
+                bottom: -3px;
+                width : 0;
+                height: 1px;
+                background-color: $grey;
+                transition: width .2s;
+            }
+
+            &:hover {
+                &::before {
+                    width: 95%;
+                }
+            }
+
+            @media screen and (max-width: 360px) {
+                margin-left: 0;
+            }
+        }
+
+        &::before {
+            content: '';
+            display: block;
+            background: url('/assets/images_app/icon-search.svg');
+            background-size: cover;
+            position:absolute; 
+            left: 5px;
+            top: 7px;
+            width: 18px;
+            height: 18px;
+        }
+    }
+    .search {
+        border: 1px solid $grey;
+        border-radius: 8px;
+        min-height: 30px;
+        padding: 0 10px 0 30px;
+        font-size: 16px;
+        color: $black;
+
+        &::placeholder {
+            color: $dark-grey;
+        }
+    }
+
+    .categories {
+        display: flex;
+        gap: 2%;
+        padding: 0;
+
+        &__item {
+            list-style: none;
+            padding-bottom: 10px;
+
+            button {
+                background-color: $white;
+                border: 1px solid $grey;
+                border-radius: 8px;
+                padding: 6px 16px;
+                font-size: 14px;
+                font-weight: 500;
+                color: $dark-grey;
+                white-space: nowrap;
+                
+                transition: color, background-color, .18;
+
+                &:hover {
+                    color: $white;
+                    background-color: $primary;
+                }
+
+                &.active {
+                    color: $white;
+                    background-color: $primary;
+                }
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+          overflow-x: scroll;
+        }
+    }
+}
+
+.encheres {
+    margin-top: 20px;
+
+    &__title {
+        font-size : 22px;
+        font-weight: 400;
+    }
+}

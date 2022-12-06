@@ -1,0 +1,27 @@
+<div class="encheres__bloc" >
+    <div *ngFor="let item of filter; let index = index;" class="encheres-item">
+        <div class="item-image" (click)="redirectionFiche(item)">
+            <figure>
+                <img src="{{item.img[0]}}" alt="image produit"/>
+            </figure>
+
+            <div class="number">{{item.img.length}}</div>
+        </div>
+
+        <div class="item-info">
+            <div (click)="redirectionFiche(item)">
+                <p class="title">{{item.nom}}</p>
+                <p class="price">{{item.prix_entree}} €</p>
+            </div>
+            <div>
+                <p class="categorie">{{item.categorie}}</p>
+                <p class="location">{{item.localisation}}</p>
+
+                <div class="option">
+                    <div *ngIf='item.livraison == "oui"' class="option-livraison"> Livraison</div>
+                    <button class="option-star" [ngClass]="{'full' : full =='true'}"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
