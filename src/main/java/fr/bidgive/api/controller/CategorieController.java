@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/cat")
+@RequestMapping("/api/cat")
 public class CategorieController {
     @Autowired
     CategorieService categorieService;
