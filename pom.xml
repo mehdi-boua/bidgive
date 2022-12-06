@@ -71,8 +71,16 @@
 	</dependencies>
 
 	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<excludes>
+					<exclude>**/bid-and-give/**</exclude>
+				</excludes>
+			</resource>
+		</resources>
 		<plugins>
-<!--			<plugin>
+			<plugin>
 				<groupId>com.github.eirslett</groupId>
 				<artifactId>frontend-maven-plugin</artifactId>
 				<version>1.9.1</version>
@@ -110,7 +118,7 @@
 					<workingDirectory>src/main/resources/bid-and-give</workingDirectory>
 				</configuration>
 			</plugin>
--->
+
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
