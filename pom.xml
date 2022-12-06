@@ -110,6 +110,7 @@
 					<workingDirectory>src/main/resources/bid-and-give</workingDirectory>
 				</configuration>
 			</plugin>
+
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
