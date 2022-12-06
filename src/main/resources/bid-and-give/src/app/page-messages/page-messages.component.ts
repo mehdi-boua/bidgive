@@ -1,4 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { user } from '../Interfaces/user';
 import { GlobalService } from '../services/global.service';
 
 @Component({
@@ -7,14 +10,27 @@ import { GlobalService } from '../services/global.service';
   styleUrls: ['./page-messages.component.scss']
 })
 export class PageMessagesComponent {
-  constructor(private service : GlobalService) {}
+  constructor (private route :Router, private global: GlobalService, private http: HttpClient) {}
+  ngOnInit(): void {
+    if(this.global.user.length == 0 || this.global.user[0].nom =="") {
+      this.http.get<user>("/api/user/get",{observe:'response'}).subscribe(data => {
+        if (data.body == null) {
+          this.route.navigate(["/connexion"]);
+        }
+        else{
+          this.global.user.push(data.body)
+        }
+      })
+    }
+  }
+
   messages : boolean = true;
   varencours: boolean = true;
   afficheMsg: boolean = false;
   afficheNotif: boolean = false;
 
-  messagesList = this.service.messages;
-  notifList = this.service.notifications;
+  messagesList = this.global.messages;
+  notifList = this.global.notifications;
 
   filtre(){
     this.messages = !this.messages;

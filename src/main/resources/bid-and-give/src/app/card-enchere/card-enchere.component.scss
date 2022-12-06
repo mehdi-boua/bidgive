@@ -104,6 +104,7 @@
         }
 
         .option {
+           position: relative;
            display: flex;
            align-items: flex-end;
 
@@ -112,16 +113,20 @@
             }
         }
 
-        .option-star {
+        .option-hearth {
+            position: absolute;
+            right: 10px;
             width: 20px;
             height: 20px;
             margin: 5px 0;
-            background: url("/assets/images_app/icon-star.svg");
-            background-size: cover;
+            background: url("/assets/images_app/icon-hearth-stroke.svg");
+            background-repeat: no-repeat;
+            background-size: contain;
             border: 0;
 
             &:hover {
-                background: url("/assets/images_app/icon-star-full.svg");
+                background: url("/assets/images_app/icon-hearth-full.svg");
+                background-repeat: no-repeat;
                 cursor: pointer;
             }
 
@@ -131,7 +136,8 @@
         }
 
         .full {
-            background: url("/assets/images_app/icon-star-full.svg");
+            background: url("/assets/images_app/icon-hearth-full.svg");
+            background-repeat: no-repeat;
         }
     }
 
@@ -140,7 +146,9 @@
     }
 
     @media screen and (max-width: 768px) {
+        margin-right: 25px;
         width: 100%;
+        margin-bottom: 10px;
     }
 
     @media screen and (max-width: 360px) {
