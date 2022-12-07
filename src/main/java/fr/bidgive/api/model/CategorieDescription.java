@@ -17,11 +17,12 @@ public class CategorieDescription {
     @org.springframework.data.annotation.Id
     private int id;
 
-
     private @Column("idCat") int idCat;
 
     private String titre;
 
     private String description;
+
+    private boolean options;
 
 }
