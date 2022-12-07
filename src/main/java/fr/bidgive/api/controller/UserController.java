@@ -20,9 +20,16 @@ public class UserController {
     @Autowired
     UserService userService;
 
+
+    @GetMapping("/{id}")
+    public UserReturn getUser(@PathVariable final int id){
+        Optional<User> u = userService.getUser(id);
+        return u.map(UserReturn::new).orElse(null);
+    }
+
     @CrossOrigin(origins = "*")
     @GetMapping("/get")
-    public UserReturn getUser(HttpServletRequest request){
+    public UserReturn getConnectedUser(HttpServletRequest request){
         HttpSession session = request.getSession();
         String mail = "";
         mail = (String) session.getAttribute("mail");
