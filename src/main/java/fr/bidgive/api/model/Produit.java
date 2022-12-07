@@ -1,5 +1,6 @@
 package fr.bidgive.api.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
@@ -37,7 +38,9 @@ public class Produit {
 
     private @Column("dureeEnchere") int dureeEnchere; // nombre total d'heures
 
-    private @Column("debutEnchere") Timestamp debutEnchere;
+    private @Column("debutEnchere") @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.sssZ")
+
+    Timestamp debutEnchere;
 
     private @Column("idAssociation") int idAssociation;
 
