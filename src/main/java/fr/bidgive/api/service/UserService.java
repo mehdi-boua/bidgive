@@ -12,6 +12,10 @@ public class UserService {
     @Autowired
     UserRepo userRepo;
 
+    public Optional<User> getUser(final int idUser){
+        return  userRepo.findById(idUser);
+    }
+
     public Optional<User> getUser(User user){
         if(user.getPseudo() != null)
             return userRepo.getUserByPseudo(user.getPseudo());
