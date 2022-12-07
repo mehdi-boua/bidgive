@@ -24,5 +24,4 @@ public class CategorieDescription {
     private String description;
 
     private boolean options;
-
 }
