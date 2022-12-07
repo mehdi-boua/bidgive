@@ -20,4 +20,6 @@ public class Association {
 
     private String lien;
 
+    private String logo;
+
 }

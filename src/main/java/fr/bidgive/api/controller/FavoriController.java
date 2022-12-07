@@ -18,6 +18,11 @@ public class FavoriController {
         return favoriService.getAll(idUser);
     }
 
+    @PostMapping("/new")
+    public Favori createFav(@RequestBody Favori favori){
+        return favoriService.newFavori(favori.getIdProduit(), favori.getIdUser());
+    }
+
     @DeleteMapping("/delete")
     public void deleteFav(@RequestBody Favori favori){
         favoriService.deleteFavori(favori);
