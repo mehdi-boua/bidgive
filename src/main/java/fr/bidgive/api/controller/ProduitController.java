@@ -5,13 +5,15 @@ import fr.bidgive.api.service.ProduitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-    @RequestMapping("/api/prod")
+@RequestMapping("/api/prod")
 public class ProduitController {
     @Autowired
     ProduitService produitService;
@@ -36,17 +38,18 @@ public class ProduitController {
 
     @CrossOrigin(origins = "*")
     @PostMapping("/new")
-    public Produit createProduit(@RequestBody Produit produit){
+    public Produit createProduit(@RequestBody Produit produit, HttpServletRequest request){
+        HttpSession session = request.getSession();
         if(produit.getDesignation() == null)
             produit.setDesignation("");
         if(produit.getDescription() == null)
             produit.setDescription("");
         if(produit.getLienImages() == null)
             produit.setLienImages("");
-        if(produit.getNomVille() == null)
-            produit.setNomVille("");
-        if(produit.getDebutEnchere() == null)
-            produit.setDebutEnchere(new Timestamp(System.currentTimeMillis()));
+
+        produit.setIdDonateur((int)session.getAttribute("idUser"));
+        produit.setDebutEnchere(new Timestamp(System.currentTimeMillis()));
+        produit.setNomVille((String) session.getAttribute("ville"));
 
 
         return produitService.saveProduit(produit);
