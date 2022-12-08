@@ -25,8 +25,8 @@ public class UserReturn {
         this.adresse = user.getAdresse();
         this.telephone = user.getTelephone();
         this.solde = user.getSolde();
-        this.image = "./assets/images_bd/avatar.jpg";
-        this.codePostal = "";
+        this.image = user.getImage();
+        this.codePostal = user.getCodePostal();
     }
 
     public int getId() {

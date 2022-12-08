@@ -94,6 +94,12 @@ public class UserController {
         if(user.getTelephone() == null)
             user.setTelephone("");
 
+        if(user.getImage() == null || "".equals(user.getImage()))
+            user.setImage("./assets/images_bd/avatar.jpg");
+
+        if(user.getCodePostal() == null)
+            user.setCodePostal("");
+
         user.setSolde(0);
 
         if(userService.saveUser(user) == null)
