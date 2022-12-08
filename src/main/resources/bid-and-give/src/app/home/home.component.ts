@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import catalogue from "../../assets/bd_catalogue.json";
+import { association } from '../Interfaces/association';
 import { categorie } from '../Interfaces/categorie';
 import { produit } from '../Interfaces/produit';
 import { GlobalService } from '../services/global.service';
@@ -16,7 +17,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.produit = [];
-
     this.http.get<produit[]>("/api/prod/all").subscribe(data => {
       data.forEach(prod => this.produit.push(prod))
     })
@@ -25,10 +25,8 @@ export class HomeComponent implements OnInit {
     this.categories = []
     this.http.get<categorie[]>("/api/cat/all").subscribe(data => {
       data.forEach(cat => this.categories.push(cat))
-      this.global.categories = this.categories;
     })
   }
-
   produit: produit[] = [];
   catalogue = catalogue
   search : string = "";
@@ -41,7 +39,6 @@ export class HomeComponent implements OnInit {
 
 
   maj_liste(){
-    console.log(this.search);
     return this.filteredList(this.maj, this.num);
   }
 
@@ -51,6 +48,7 @@ export class HomeComponent implements OnInit {
     this.search = "";
     return this.filteredList(null);
   }
+
 
   /* filteredList(e?: any, num?: any) {
     document.getElementById("btn"+this.num)?.classList.remove("active");
@@ -90,7 +88,6 @@ export class HomeComponent implements OnInit {
       }
       else {
           this.maj = null;
-          console.log(this.search);
           return item.designation.toLowerCase().includes(this.search.toLowerCase());
         }     
     })

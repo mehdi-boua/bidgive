@@ -139,6 +139,19 @@
             background: url("/assets/images_app/icon-hearth-full.svg");
             background-repeat: no-repeat;
         }
+
+        .line1 {
+            display: flex;
+            justify-content: space-between;
+
+            .logo-asso{
+                img {
+                    height: 40px;
+                    width: 40px;
+                    object-fit: contain;
+                }
+            }
+        }
     }
 
     @media screen and (max-width: 1023px) {

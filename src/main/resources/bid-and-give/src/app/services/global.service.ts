@@ -1,8 +1,16 @@
+import { OnInit } from "@angular/core";
 import catalogue from "../../assets/bd_catalogue.json";
+import { association } from "../Interfaces/association";
 import { categorie } from "../Interfaces/categorie";
 import { user } from "../Interfaces/user";
 
 export class GlobalService {
+
+    lienImagesCrea = [
+        "https://lemagdesanimaux.ouest-france.fr/images/dossiers/2022-09/lapin-erreur-061313.jpg",
+        "https://www.spa-lyon.org/wp-content/uploads/2021/04/article1-pixabay.jpg",
+        "https://static1.magazine.ribambel.com/articles/2/17/92/@/28498-le-lapin-nain-est-un-animal-calin-joueu-v2_article_big-3.jpeg"
+    ]
 
     infoProduit :any;
 
@@ -13,6 +21,8 @@ export class GlobalService {
     /*userList = [{nom: "", prenom: "", pseudo : "", mail :"", adresse: "",  ville:"", CP : "",  solde: "", image:"" },
                 {nom: "", prenom: "", pseudo : "", solde: "", image:"" },
                 {nom: "", prenom: "", pseudo : "", solde: "", image:"" }] */ 
+
+   // associations : association[] = [];
 
     categories: categorie[] = [
         {id: 1 ,titre: "High-tech", description:""},

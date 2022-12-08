@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
+import { AbsoluteSourceSpan } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import catalogue from "../../assets/bd_catalogue.json";
+import { association } from '../Interfaces/association';
 import { categorie } from '../Interfaces/categorie';
 import { produit } from '../Interfaces/produit';
 import { GlobalService } from '../services/global.service';
@@ -14,12 +16,26 @@ import { GlobalService } from '../services/global.service';
 export class CardEnchereComponent implements OnInit {
   constructor ( private service : GlobalService, private route : Router, private http: HttpClient) {}
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+
+    this.association = [];
+    this.http.get<association[]>("/api/association/all").subscribe(data => {
+      data.forEach(
+        asso => this.association.push(asso));
+
+    })
+
+    this.link= [];
+    this.http.get<association[]>("/api/association/all").subscribe(data => {
+      data.forEach(
+        asso => this.link.push(asso.logo));
+    })
   }
   
-
   @Input() filter?: produit[] ;
   @Input() full : string ="";
+  association : association[] = [];
+  listeImage : string[]= [];
+  link : any[] = [];
 
   getCategorie(i :number) {
     var catName = ""
@@ -35,6 +51,7 @@ export class CardEnchereComponent implements OnInit {
   redirectionFiche(i: any){
     this.service.infoProduit = i;
     console.log(i);
-    this.route.navigate(['/produit/'+i.id_meuble]);
+    console.log(this.service.infoProduit);
+    this.route.navigate(['/produit/'+i.id]);
   }
 }

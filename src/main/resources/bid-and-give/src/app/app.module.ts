@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 import { GlobalService} from './services/global.service';
+import { SafePipe} from './services/safe.pipe';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -43,7 +44,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     PageConnexionComponent,
     PageMdpComponent,
     MapComponent,
-    PageEncherirComponent
+    PageEncherirComponent, 
+    SafePipe
   ],
   imports: [
     BrowserModule,

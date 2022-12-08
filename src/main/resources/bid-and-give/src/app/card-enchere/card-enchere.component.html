@@ -1,17 +1,22 @@
 <div class="encheres__bloc" >
-    <div *ngFor="let item of filter; let index = index;" class="encheres-item">
+    <div *ngFor="let item of filter!.reverse(); let index = index;" class="encheres-item">
         <div class="item-image" (click)="redirectionFiche(item)">
-            <figure>
-                <img src="{{item.lienImages}}" alt="image produit"/>
+            <figure *ngIf=" item.lienImages != ''">
+                <img src={{item.lienImages}} alt="image produit"/>
             </figure>
 
             <div class="number"> 1</div>
         </div>
 
         <div class="item-info">
-            <div (click)="redirectionFiche(item)">
-                <p class="title">{{item.designation}}</p>
-                <p class="price">{{item.prixDepart}} €</p>
+            <div class="line1" (click)="redirectionFiche(item)">
+                <div>
+                    <p class="title">{{item.designation}}</p>
+                    <p class="price">{{item.prixDepart}} €</p>
+                </div>
+                <div class="logo-asso" >
+                  <img src="{{link[item.idAssociation]}}" />
+                </div>
             </div>
             <div>
                 <p class="categorie">{{getCategorie(item.idCategorie)}}</p>

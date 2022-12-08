@@ -2,7 +2,7 @@
 
 .page-encherir {
     .content {
-        margin: 0 2vw 90px;
+        margin: 0 2vw 100px;
 
         &.marge {
             margin-bottom: 140px;
@@ -74,6 +74,27 @@
         }
     }
 
+    .asso {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+
+        p {
+            margin-left: 15px;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+            font-size: 18px;
+        }
+
+        img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            margin: 0 10px;
+        }
+    }
+
     .bloc-encherir {
         max-width: 50vw;
         margin: 40px 0 0;
@@ -140,7 +161,7 @@
         box-shadow: -8px 18px 10px 14px $black;
         font-size: 16px;
         font-weight: 500;
-        padding: 10px 25px 10px 0;
+        padding: 5px 25px 5px 0;
 
         .button-encherir {
             padding: 12px 50px;

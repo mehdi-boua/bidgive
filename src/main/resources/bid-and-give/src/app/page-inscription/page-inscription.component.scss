@@ -49,22 +49,31 @@
     .container {
         max-width: 70vw;
         margin: 0 auto;
-        display: flex;
-        justify-content: center;
         background-color: $light-purple;
         border-radius: 8px;
         padding: 20px 10px;
     
         .form {
-            display: flex;
-            flex-wrap: wrap;
+            text-align: center;
+            .grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+
+                @media screen and (max-width: 480px) {
+                    display: flex;
+                    flex-wrap: wrap;
+                }
+            }
     
             &__item {
-                flex: 45%;
                 margin: 15px;
     
                 @media screen and (max-width: 1023px) {
                     margin-right: 0;
+                }
+
+                @media screen and (max-width: 480px) {
+                    flex: 100%;
                 }
     
                 input {
@@ -74,6 +83,10 @@
     
                     @media screen and (max-width: 1023px) {
                         width: 180px;
+                    }
+
+                    @media screen and (max-width: 480px) {
+                        width: 250px;
                     }
                 }
     

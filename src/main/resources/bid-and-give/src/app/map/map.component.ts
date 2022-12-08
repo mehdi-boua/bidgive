@@ -15,7 +15,7 @@ export class MapComponent implements AfterViewInit {
   }
 
 
-  ville = this.service.infoProduit.localisation;
+  ville = this.service.infoProduit.nomVille;
   data = data;
 
   getCoord() {

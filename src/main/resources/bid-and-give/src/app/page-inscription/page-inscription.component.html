@@ -5,6 +5,10 @@
     
     <h1 class="title">Créer un compte</h1>
     <div class="info">
+        <p >Créer un compte vous permettra d'accéder à toutes les fonctionnalités de l'application.
+        </p>
+    </div>
+    <div class="info">
         <a routerLink="/home">
             <img src="../../assets/images_app/icon-chevron-left.svg" />
             Retour
@@ -14,37 +18,54 @@
     <div class="content">
         <div class="container">
             <form class="form">
-                <div class="form__item">
-                    <label>Nom</label>
-                    <input type="text" />
+                <div class="grid">
+                    <div class="form__item">
+                        <label>Nom</label>
+                        <input type="text" [(ngModel)]="nom" name="nom"/>
+                    </div>
+                
+                    <div class="form__item">
+                        <label>Prénom</label>
+                        <input type="text"  [(ngModel)]="prenom" name="prenom"/>
+                    </div>
+    
+                    <div class="form__item">
+                        <label>Pseudo</label>
+                        <input type="text"  [(ngModel)]="pseudo" name="pseudo"/>
+                    </div>
+                
+                    <div class="form__item">
+                        <label>Adresse mail</label>
+                        <input type="email" [(ngModel)]="mail" name="mail"/>
+                    </div>
+    
+                    <div class="form__item">
+                        <label>Adresse postale</label>
+                        <input type="text"  [(ngModel)]="adrpostale" name="adrpostale"/>
+                    </div>
+                
+                    <div class="form__item">
+                        <label>Ville</label>
+                        <input type="text"  [(ngModel)]="ville" name="ville"/>
+                    </div>
+    
+                    <div class="form__item">
+                        <label>Code postale</label>
+                        <input type="text" [(ngModel)]="cp" name="cp"/>
+                    </div>
+    
+                    <div class="form__item">
+                        <label>Téléphone</label>
+                        <input type="text" [(ngModel)]="tel" name="tel"/>
+                    </div>
+                
+                    <div class="form__item">
+                        <label>Choisisez un mot de passe</label>
+                        <input type="password" [(ngModel)]="mdp" name="mdp"/>
+                    </div>
                 </div>
             
-                <div class="form__item">
-                    <label>Prénom</label>
-                    <input type="text" />
-                </div>
-            
-                <div class="form__item">
-                    <label>Adresse mail</label>
-                    <input type="text" />
-                </div>
-            
-                <div class="form__item">
-                    <label>Ville</label>
-                    <input type="text" />
-                </div>
-            
-                <div class="form__item">
-                    <label>Choisisez un mot de passe</label>
-                    <input type="password" />
-                </div>
-            
-                <div class="form__item">
-                    <label>Confirmez votre mot de passe</label>
-                    <input type="password" />
-                </div>
-            
-                <input type="submit" value="Créer mon compte" class="submit">
+                <input type="submit" value="Créer mon compte" class="submit" (click)="addUser()">
             </form>
         </div>
     

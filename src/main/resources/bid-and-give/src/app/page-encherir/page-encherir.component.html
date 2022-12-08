@@ -7,10 +7,10 @@
 
             <div class="card-produit">
                 <div class="card-produit__infos">
-                    <img *ngIf="produit != undefined && produit.img != undefined" class="card-produit__img" src="{{produit.img[0]}}" />
-                    <p *ngIf="produit != undefined && produit.nom != undefined" class="card-produit__name">{{produit.nom}}</p>
+                    <img  class="card-produit__img" src="{{produit.lienImages}}" />
+                    <p class="card-produit__name">{{produit.designation}}</p>
                 </div>
-                <p class="card-produit__price">20€</p>
+                <p class="card-produit__price">{{produit.prixDepart}}€</p>
             </div>
 
             <div class="bloc-infos">
@@ -21,8 +21,8 @@
 
                 <p class="bloc-infos__bid">
                     <img src="./assets/images_app/icon-bid.svg">
-                    Nombres d'enchères : <span *ngIf="produit != undefined && produit.acquereurs!= undefined">
-                        {{produit.acquereurs.length}} </span>
+                    Nombres d'enchères : <span *ngIf="produit != undefined ">
+                        0</span>
                 </p>
 
                 <p class="bloc-infos__user">
@@ -32,21 +32,29 @@
 
                 <p class="bloc-infos__price">
                     <img src="./assets/images_app/icon-price.svg">
-                    Enchère minimum: <span> 21€ </span>
+                    Enchère minimum: <span> {{produit.prixDepart+1}}€ </span>
+                </p>
+            </div>
+
+            <div class="asso">
+                Si vous remportez cette enchère les gains seront reversés à l'association : 
+                <p>
+                    {{name[produit.idAssociation]}}
+                    <img src="{{logo[produit.idAssociation]}}"/>
                 </p>
             </div>
 
             <div class="bloc-encherir">
                 <h2 class="bloc-encherir__title">Quel est le montant de votre enchère ?</h2>
-                <p>Indiquez le montant que vous souhaitez pour surenchérir.</p>
+                <p>Indiquez le plafond maximum au-délà duquel vous ne souhaitez plus enchérir.</p>
 
                 <form class="bloc-encherir__form" id="#form">
                     <fieldset>
-                        <legend>Montant</legend>
+                        <legend>Montant maximum</legend>
 
-                        <input class="bloc-encherir__input" value="{{produit.prix_entree}}" type="number" [(ngModel)]="montant" (input)="verifMontant($event)" name="input">
+                        <input class="bloc-encherir__input" value="{{produit.prixDepart+1}}" type="number" [(ngModel)]="montant" (input)="verifMontant($event)" name="input">
                     </fieldset>
-                    <p  class="error" id="error"></p>
+                    <p class="error" id="error"></p>
                 </form>
 
                 <p class="bloc-encherir__mentions1">Votre enchère est un contrat. Ne placez pas une enchère si vous
@@ -61,7 +69,7 @@
         <div [ngClass]="{'hide': etape ==false}" class="etape2">
             <h2 class="etape2__title"><span>Étape 2/2</span> Félicitations, vous êtes actuellemnt le meilleur enchérisseur sur cet objet !</h2>
             <p class="etape2__texte">Votre enchère à {{montant}} € a bien été prise en compte.</p>
-            <p class="etape2__texte">Sachez qu’il vous est toujous possible que de redéfinir le montant de votre enchère sur cet objet en retournant sur l’annonce de l’enchère.</p>
+            <p class="etape2__texte">Sachez qu’il vous est toujous possible de redéfinir le montant de votre enchère sur cet objet en retournant sur l’annonce de l’enchère.</p>
             <p class="etape2__texte">Cette enchère a été ajoutée dans vos favoris.</p>
             <p class="etape2__texte">Si vous remportez l'enchère une confirmation de paiement vous sera demandée,
                 vous pouvez d'ores et déja enregistrer un moyen de paiement via l'onglet "Mon compte" ou il vous en sera demandé un utlérieurement.
