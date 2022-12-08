@@ -1,5 +1,6 @@
 package fr.bidgive.api.controller;
 
+import fr.bidgive.api.controller.returnBeans.FicheProduit;
 import fr.bidgive.api.model.Produit;
 import fr.bidgive.api.model.ProduitDescription;
 import fr.bidgive.api.service.ProduitDescriptionService;
@@ -39,6 +40,11 @@ public class ProduitController {
     @GetMapping("/{id}")
     public Optional<Produit> un(@PathVariable final int id){
         return produitService.getProduit(id);
+    }
+
+    @GetMapping("/{id}/fiche")
+    public FicheProduit getFiche(@PathVariable("id") final int idProduit){
+        return produitService.getFiche(idProduit);
     }
 
     @CrossOrigin(origins = "*")

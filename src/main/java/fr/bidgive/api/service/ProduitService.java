@@ -1,5 +1,6 @@
 package fr.bidgive.api.service;
 
+import fr.bidgive.api.controller.returnBeans.FicheProduit;
 import fr.bidgive.api.model.Enchere;
 import fr.bidgive.api.model.Notification;
 import fr.bidgive.api.model.Produit;
@@ -47,6 +48,10 @@ public class ProduitService {
         enchere.setEtat(-1);
 
         return produitRepo.save(produit);
+    }
+
+    public FicheProduit getFiche(final int id){
+        return new FicheProduit(getProduit(id).get());
     }
 
     @Scheduled(cron = "0 0 * * * *")
