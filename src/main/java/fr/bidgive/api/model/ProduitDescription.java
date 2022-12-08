@@ -14,7 +14,7 @@ public class ProduitDescription {
     @org.springframework.data.annotation.Id
     private int id;
 
-    private @Column("idProduit") int idProduit;
+    private @Column("idProd") int idProduit;
 
     private @Column("idCatDesc") int idCatDesc;
 

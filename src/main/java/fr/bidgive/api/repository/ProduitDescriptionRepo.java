@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProduitDescriptionRepo extends CrudRepository<ProduitDescription, Integer> {
-    @Query("SELECT  * FROM produitDescription WHERE idProduit=:idProduct")
+    @Query("SELECT  * FROM produitDescription WHERE idProd=:idProduct")
     Iterable<ProduitDescription> findProductDesc(final int idProduct);
 }
