@@ -51,13 +51,21 @@ public class ProduitController {
             produit.setDescription("");
         if(produit.getLienImages() == null)
             produit.setLienImages("");
-
+        System.out.println("ici 1");
         produit.setIdDonateur((int)session.getAttribute("idUser"));
         produit.setDebutEnchere(new Timestamp(System.currentTimeMillis()));
         produit.setNomVille((String) session.getAttribute("ville"));
+        System.out.println("ici 1");
 
+        Produit p = null;
+        try {
+            p = produitService.saveProduit(produit);
 
-        return produitService.saveProduit(produit);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return p;
     }
 
     @GetMapping("/{id}/desc")
@@ -66,12 +74,13 @@ public class ProduitController {
     }
 
     @PostMapping("/{id}/desc/new")
-    public Iterable<ProduitDescription> produitDescriptions(@RequestBody Iterable<ProduitDescription> liste,
+    public ProduitDescription produitDescriptions(@RequestBody ProduitDescription prodDesc,
                                                             @PathVariable("id") final int idProduit){
-        List<ProduitDescription> returnList = new ArrayList<>();
-        liste.forEach(desc -> {
-            returnList.add(prodDescService.save(desc));
-        });
-        return returnList;
+        System.out.println("here");
+        System.out.println(prodDesc);
+
+        prodDesc.setIdProduit(idProduit);
+
+        return prodDescService.save(prodDesc);
     }
 }
