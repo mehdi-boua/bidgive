@@ -1,6 +1,8 @@
 package fr.bidgive.api.controller;
 
 import fr.bidgive.api.model.Produit;
+import fr.bidgive.api.model.ProduitDescription;
+import fr.bidgive.api.service.ProduitDescriptionService;
 import fr.bidgive.api.service.ProduitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +19,9 @@ import java.util.Optional;
 public class ProduitController {
     @Autowired
     ProduitService produitService;
+
+    @Autowired
+    ProduitDescriptionService prodDescService;
 
     @CrossOrigin(origins = "*")
     @GetMapping("/all")
@@ -53,5 +58,20 @@ public class ProduitController {
 
 
         return produitService.saveProduit(produit);
+    }
+
+    @GetMapping("/{id}/desc")
+    public Iterable<ProduitDescription> produitDescriptions(@PathVariable("id") final int idProduit){
+        return prodDescService.findProductDesc(idProduit);
+    }
+
+    @PostMapping("/{id}/desc/new")
+    public Iterable<ProduitDescription> produitDescriptions(@RequestBody Iterable<ProduitDescription> liste,
+                                                            @PathVariable("id") final int idProduit){
+        List<ProduitDescription> returnList = new ArrayList<>();
+        liste.forEach(desc -> {
+            returnList.add(prodDescService.save(desc));
+        });
+        return returnList;
     }
 }
