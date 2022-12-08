@@ -1,6 +1,7 @@
 package fr.bidgive.api.model;
 
 import lombok.Data;
+import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import javax.persistence.Entity;
@@ -34,4 +35,9 @@ public class User {
     private String telephone;
 
     private float solde;
+
+    private String image;
+
+    private @Column("codePostal") String codePostal;
+
 }
