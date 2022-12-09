@@ -4,7 +4,7 @@
     </div>
     
     <h1 class="title">Créer un compte</h1>
-    <div class="info">
+    <div class="text">
         <p >Créer un compte vous permettra d'accéder à toutes les fonctionnalités de l'application.
         </p>
     </div>
@@ -30,12 +30,12 @@
                     </div>
     
                     <div class="form__item">
-                        <label>Pseudo</label>
+                        <label>Pseudo*</label>
                         <input type="text"  [(ngModel)]="pseudo" name="pseudo"/>
                     </div>
                 
-                    <div class="form__item">
-                        <label>Adresse mail</label>
+                   <div class="form__item">
+                        <label>Adresse mail*</label>
                         <input type="email" [(ngModel)]="mail" name="mail"/>
                     </div>
     
@@ -45,12 +45,12 @@
                     </div>
                 
                     <div class="form__item">
-                        <label>Ville</label>
+                        <label>Ville*</label>
                         <input type="text"  [(ngModel)]="ville" name="ville"/>
                     </div>
     
                     <div class="form__item">
-                        <label>Code postale</label>
+                        <label>Code postale*</label>
                         <input type="text" [(ngModel)]="cp" name="cp"/>
                     </div>
     
@@ -60,12 +60,14 @@
                     </div>
                 
                     <div class="form__item">
-                        <label>Choisisez un mot de passe</label>
+                        <label>Choisisez un mot de passe*</label>
                         <input type="password" [(ngModel)]="mdp" name="mdp"/>
                     </div>
                 </div>
             
                 <input type="submit" value="Créer mon compte" class="submit" (click)="addUser()">
+                <div id="error" class="error hide"> Un ou plusieurs champs n'ont pas été saisis</div>
+                <div id="confirm" class="confirm hide"> Votre compte a bien été créé, vous pouvez désormais vous connecter</div>
             </form>
         </div>
     

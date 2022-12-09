@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { association } from '../Interfaces/association';
+import { fiche, Fiche } from '../Interfaces/fiche';
+import { prodDesc, prodDesc2 } from '../Interfaces/prodDesc';
 import { GlobalService } from '../services/global.service';
 
 
@@ -16,32 +18,47 @@ export class PageProduitComponent implements OnInit{
     this.elemProduit = this.service.infoProduit;
     this.getImages();
 
-    this.link = [];
+    this.assoc = [];
     this.http.get<association[]>("/api/association/all").subscribe(data => {
       data.forEach(
-        asso => this.link.push(asso.lien));
+        asso => this.assoc[asso.id] = (asso));
     })
 
-    this.name = [];
-    this.http.get<association[]>("/api/association/all").subscribe(data => {
-      data.forEach(
-        asso => this.name.push(asso.nom));
-
+    var url = "/api/prod/"+this.elemProduit.id+"/fiche"
+    this.http.get<fiche>(url).subscribe(data =>{
+      this.fiche.id = data.id
+      this.fiche.designation = data.designation
+      this.fiche.description = data.description
+      this.fiche.idCategorie = data.idCategorie
+      this.fiche.lienImages = data.lienImages
+      this.fiche.nomVille = data.nomVille
+      this.fiche.prixDepart = data.prixDepart
+      this.fiche.prixReserve = data.prixReserve
+      this.fiche.dureeEnchere = data.dureeEnchere
+      this.fiche.debutEnchere = data.debutEnchere
+      this.fiche.idAssociation = data.idAssociation
+      this.fiche.idLivrison = data.idLivrison
+      this.fiche.idDonateur = data.idDonateur
+      this.fiche.donateurPseudo = data.donateurPseudo
+      this.fiche.meilleurEnchere = data.meilleurEnchere
+      this.fiche.nomMeilleurEncherisseur = data.nomMeilleurEncherisseur
+      this.fiche.nbDonations = data.nbDonations
+      this.fiche.nbParticipants = data.nbParticipants
     })
 
-    this.logo = [];
-    this.http.get<association[]>("/api/association/all").subscribe(data => {
-      data.forEach(
-        asso => this.logo.push(asso.logo));
-
+    url = "/api/prod/"+this.elemProduit.id+"/desc"
+    this.http.get<prodDesc2[]>(url).subscribe(data=>{
+      data.forEach(elem => this.prodDesc.push(elem))
     })
+
+
   }
 
+  fiche: Fiche = new Fiche()
   elemProduit : any;
-  listeImage : string[]= [];
-  link : string[] = [];
-  name : string[] = [];
-  logo : string[] = [];
+  listeImage : string[] = [];
+  assoc : association[] = []
+  prodDesc : prodDesc2[] = []
 
   getImages() {
     this.listeImage= this.elemProduit.lienImages.split("|");
@@ -49,7 +66,7 @@ export class PageProduitComponent implements OnInit{
   }
 
   getDonateur () {
-    /* TODO */
+    return this.fiche.donateurPseudo
   }
 
   redirection(i: any){

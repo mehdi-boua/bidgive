@@ -43,26 +43,26 @@
         <div class="asso">
             <div class="line1">
                 Au profit de l'association : 
-                <img src="{{logo[elemProduit.idAssociation]}}"/>
-                <p>{{name[elemProduit.idAssociation]}}</p>
+                <img src="{{assoc[elemProduit.idAssociation].logo}}"/>
+                <p>{{assoc[elemProduit.idAssociation].nom}}</p>
             </div>
-            <a href="{{link[elemProduit.idAssociation]}}" target="_blank">Découvrir l'association</a>
+            <a href="{{assoc[elemProduit.idAssociation].lien}}" target="_blank">Découvrir l'association</a>
         </div>
 
         <p class="bloc-general__time">
             <img src="./assets/images_app/icon-hour.svg">
-            Temps restant : <span>1 jour, 11h32m43s  TODOOOOOOO</span>
+            Temps restant : <span>1 jour, 11h32m</span>
         </p>
 
         <p class="bloc-general__bid">
             <img src="./assets/images_app/icon-bid.svg">
-            Nombres d'enchères : <!-- <span *ngIf="elemProduit != undefined && elemProduit.acquereurs!= undefined">
+            Nombres d'enchères : {{fiche.nbParticipants}} <!-- <span *ngIf="elemProduit != undefined && elemProduit.acquereurs!= undefined">
                 {{elemProduit.acquereurs.length}} </span> -->
         </p>
 
         <p class="bloc-general__user">
             <img src="./assets/images_app/icon-profile.svg">
-            Meilleur enchérisseur: <span> TODO </span>
+            Meilleur enchérisseur: <span> {{ fiche.nomMeilleurEncherisseur }} </span>
         </p>
     </div>
 
@@ -87,12 +87,12 @@
 
     <div class="bloc-vendor">
         <figure>
-            <img class="bloc-vendor__img" src="./assets/images_bd/produit.png">
+            <img class="bloc-vendor__img" src="./assets/images_bd/avatar.jpg">
         </figure>
 
         <div class="bloc-vendor__infos">
-            <p class="bloc-vendor__name"> {{ getDonateur()}} TODO</p>
-            <p class="bloc-vendor__give"> 11 donations</p>
+            <p class="bloc-vendor__name"> {{ getDonateur()}}</p>
+            <p class="bloc-vendor__give"> {{ fiche.nbDonations }} donations</p>
         </div>
 
         <a class="bloc-vendor__link">
@@ -110,7 +110,11 @@
             <p class="bloc-informations__name">Critères</p>
 
             <div class="bloc-informations__list">
-                <div>
+                <div *ngFor="let desc of prodDesc">
+                    <p class="bloc-informations__list-title">{{ desc.desc }}</p>
+                    <p class="bloc-informations__list-text">{{ desc.option }}</p>
+                </div>
+<!--                <div>
                     <p class="bloc-informations__list-title">Couleur</p>
                     <p class="bloc-informations__list-text">Rouge</p>
                 </div>
@@ -124,9 +128,11 @@
                 </div>
                 <div>
                     <p class="bloc-informations__list-title">Dimensions</p>
+-->                    
                     <!-- <p class="bloc-informations__list-text"
                         *ngIf="elemProduit != undefined && elemProduit.dimensions!= undefined">
                         {{elemProduit.dimensions}}</p> -->
+<!--
                 </div>
                 <div>
                     <p class="bloc-informations__list-title">TODO</p>
@@ -136,6 +142,7 @@
                     <p class="bloc-informations__list-title">TODO</p>
                     <p class="bloc-informations__list-text">TODO</p>
                 </div>
+-->
             </div>
         </div>
     </div>

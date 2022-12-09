@@ -27,7 +27,7 @@ export class CardEnchereComponent implements OnInit {
     this.link= [];
     this.http.get<association[]>("/api/association/all").subscribe(data => {
       data.forEach(
-        asso => this.link.push(asso.logo));
+        asso => this.link[asso.id] = asso.logo);
     })
   }
   
@@ -36,6 +36,11 @@ export class CardEnchereComponent implements OnInit {
   association : association[] = [];
   listeImage : string[]= [];
   link : any[] = [];
+
+  getNbImages(i : string){
+    let nb = i.split("|");
+    return nb.length;
+  }
 
   getCategorie(i :number) {
     var catName = ""

@@ -34,7 +34,8 @@
         }
     }
     
-    .title {
+    .title, 
+    .text {
         margin-left: 15vw;
     
         @media screen and (max-width: 1023px) {
@@ -110,6 +111,20 @@
                 &:hover {
                     background-color: $primary;
                 }
+            }
+
+            .error {
+                color: $red;
+                text-align: center;
+            }
+
+            .confirm {
+                color: green;
+                text-align: center;
+            }
+    
+            .hide {
+                display: none;
             }
     
             @media screen and (max-width: 480px) {
