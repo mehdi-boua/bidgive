@@ -1,6 +1,7 @@
 package fr.bidgive.api.controller;
 
 import fr.bidgive.api.controller.returnBeans.FicheProduit;
+import fr.bidgive.api.controller.returnBeans.ProdDescReturn;
 import fr.bidgive.api.model.Produit;
 import fr.bidgive.api.model.ProduitDescription;
 import fr.bidgive.api.service.ProduitDescriptionService;
@@ -75,8 +76,8 @@ public class ProduitController {
     }
 
     @GetMapping("/{id}/desc")
-    public Iterable<ProduitDescription> produitDescriptions(@PathVariable("id") final int idProduit){
-        return prodDescService.findProductDesc(idProduit);
+    public List<ProdDescReturn> produitDescriptions(@PathVariable("id") final int idProduit){
+        return prodDescService.prodDesc(idProduit);
     }
 
     @PostMapping("/{id}/desc/new")
