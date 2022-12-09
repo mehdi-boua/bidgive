@@ -201,12 +201,14 @@ export class PageCreationComponent implements OnInit {
       this.prodDesc.push(temp);
     });
 
+    var lienImage = this.global.lienImagesCrea[Math.floor(Math.random()*3)]
+
     this.http.post<Produit>("/api/prod/new", {
       "designation": this.prod.designation,
       "description": this.prod.description,
       "idDonateur": this.prod.idDonateur,
       "idCategorie": this.prod.idCategorie,
-      "lienImages": "",
+      "lienImages": lienImage,
       "nomVille": null,
       "prixDepart": this.prod.prixDepart,
       "prixReserve": this.prod.prixReserve,
@@ -264,12 +266,14 @@ export class PageCreationComponent implements OnInit {
       this.prodDesc.push(temp);
     });    
 
+    var lienImage = this.global.lienImagesCrea[Math.floor(Math.random()*3)]
+
     this.http.post<Produit>("/api/prod/new", {
       "designation": this.prod.designation,
       "description": this.prod.description,
       "idDonateur": this.prod.idDonateur,
       "idCategorie": this.prod.idCategorie,
-      "lienImages": "",
+      "lienImages": lienImage,
       "nomVille": null,
       "prixDepart": this.prod.prixDepart,
       "prixReserve": this.prod.prixReserve,
