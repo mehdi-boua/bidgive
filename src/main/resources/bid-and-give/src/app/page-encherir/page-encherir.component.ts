@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { association } from '../Interfaces/association';
+import { user } from '../Interfaces/user';
 import { GlobalService } from '../services/global.service';
 
 @Component({
@@ -12,25 +13,38 @@ import { GlobalService } from '../services/global.service';
 export class PageEncherirComponent {
   constructor(private service: GlobalService, private route: Router, private http: HttpClient) {}
   ngOnInit(): void {
+    /* if(this.service.user.length == 0 || this.service.user[0].nom =="") {
+       this.route.navigate(["/connexion"]);
+     } */
+
+    if(this.service.user.length == 0 || this.service.user[0].nom =="") {
+      this.http.get<user>("/api/user/get",{observe:'response'}).subscribe(data => {
+        if (data.body == null) {
+          this.route.navigate(["/connexion"]);
+        }
+        else{
+          this.service.user.push(data.body)
+        }
+      })
+    }
+
+
     this.produit = this.service.infoProduit;
     console.log(this.produit);
 
     this.name = [];
     this.http.get<association[]>("/api/association/all").subscribe(data => {
       data.forEach(
-        asso => this.name.push(asso.nom));
+        asso => this.name[asso.id] = asso.nom);
 
     })
 
     this.logo = [];
     this.http.get<association[]>("/api/association/all").subscribe(data => {
       data.forEach(
-        asso => this.logo.push(asso.logo));
+        asso => this.logo[asso.id] = asso.logo);
 
     })
-   /* if(this.service.user.length == 0 || this.service.user[0].nom =="") {
-      this.route.navigate(["/connexion"]);
-    } */
   }
 
   produit: any;
@@ -56,5 +70,15 @@ export class PageEncherirComponent {
 
   etapePrecedente() {
     this.etape = false;
+  }
+
+  home(){
+    this.http.post("/api/ench/new", {
+      "idProduit" : this.produit.id,
+      "idEnchereur" : this.service.user[0].id,
+      "valeur": this.montant
+    }).subscribe()
+
+    this.route.navigateByUrl("/home")
   }
 }

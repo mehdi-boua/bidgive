@@ -85,7 +85,7 @@
         <button [ngClass]="{'hide': etape ==false}" class="button-modifier" (click)="etapePrecedente()">
             Modifier mon enchère
         </button>
-        <a [ngClass]="{'hide': etape ==false}" class="button-home" routerLink="/home">
+        <a [ngClass]="{'hide': etape ==false}" class="button-home" (click)="home()">
             Retourner à l'accueil
         </a>
     </div>
