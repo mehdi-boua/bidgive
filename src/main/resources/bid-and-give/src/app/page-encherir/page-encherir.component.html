@@ -1,0 +1,92 @@
+<app-header title="Enchérir" encherir="oui"></app-header>
+
+<div class="page-encherir">
+    <div [ngClass]="{'marge': etape ==true}" class="content">
+        <div [ngClass]="{'hide': etape ==true}" class="etape1">
+            <h2>Étape 1/2</h2>
+
+            <div class="card-produit">
+                <div class="card-produit__infos">
+                    <img  class="card-produit__img" src="{{produit.lienImages}}" />
+                    <p class="card-produit__name">{{produit.designation}}</p>
+                </div>
+                <p class="card-produit__price">{{produit.prixDepart}}€</p>
+            </div>
+
+            <div class="bloc-infos">
+                <p class="bloc-infos__time">
+                    <img src="./assets/images_app/icon-hour.svg">
+                    Temps restant : <span>1 jour, 11h32m43s </span>
+                </p>
+
+                <p class="bloc-infos__bid">
+                    <img src="./assets/images_app/icon-bid.svg">
+                    Nombres d'enchères : <span *ngIf="produit != undefined ">
+                        0</span>
+                </p>
+
+                <p class="bloc-infos__user">
+                    <img src="./assets/images_app/icon-profile.svg">
+                    Meilleur enchérisseur: <span> TODO </span>
+                </p>
+
+                <p class="bloc-infos__price">
+                    <img src="./assets/images_app/icon-price.svg">
+                    Enchère minimum: <span> {{produit.prixDepart+1}}€ </span>
+                </p>
+            </div>
+
+            <div class="asso">
+                Si vous remportez cette enchère les gains seront reversés à l'association : 
+                <p>
+                    {{name[produit.idAssociation]}}
+                    <img src="{{logo[produit.idAssociation]}}"/>
+                </p>
+            </div>
+
+            <div class="bloc-encherir">
+                <h2 class="bloc-encherir__title">Quel est le montant de votre enchère ?</h2>
+                <p>Indiquez le plafond maximum au-délà duquel vous ne souhaitez plus enchérir.</p>
+
+                <form class="bloc-encherir__form" id="#form">
+                    <fieldset>
+                        <legend>Montant maximum</legend>
+
+                        <input class="bloc-encherir__input" value="{{produit.prixDepart+1}}" type="number" [(ngModel)]="montant" (input)="verifMontant($event)" name="input">
+                    </fieldset>
+                    <p class="error" id="error"></p>
+                </form>
+
+                <p class="bloc-encherir__mentions1">Votre enchère est un contrat. Ne placez pas une enchère si vous
+                    n’êtes pas certain de vouloir acheter cet objet.</p>
+                <p class="bloc-encherir__mentions2">Si vous avez besoin de renseignements, posez des questions au
+                    vendeur AVANT de placer une enchère. Dès que vous gagnez une enchère,
+                    vous recevrez automatiquement un message de confirmation par mail ainsi qu’une notification au sein
+                    de l’application.</p>
+            </div>
+        </div>
+
+        <div [ngClass]="{'hide': etape ==false}" class="etape2">
+            <h2 class="etape2__title"><span>Étape 2/2</span> Félicitations, vous êtes actuellemnt le meilleur enchérisseur sur cet objet !</h2>
+            <p class="etape2__texte">Votre enchère à {{montant}} € a bien été prise en compte.</p>
+            <p class="etape2__texte">Sachez qu’il vous est toujous possible de redéfinir le montant de votre enchère sur cet objet en retournant sur l’annonce de l’enchère.</p>
+            <p class="etape2__texte">Cette enchère a été ajoutée dans vos favoris.</p>
+            <p class="etape2__texte">Si vous remportez l'enchère une confirmation de paiement vous sera demandée,
+                vous pouvez d'ores et déja enregistrer un moyen de paiement via l'onglet "Mon compte" ou il vous en sera demandé un utlérieurement.
+            </p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <button [ngClass]="{'activated': activated==true, 'hide': etape ==true}" class="button-encherir" (click)="etapeSuivante()">
+            Enchérir
+        </button>
+
+        <button [ngClass]="{'hide': etape ==false}" class="button-modifier" (click)="etapePrecedente()">
+            Modifier mon enchère
+        </button>
+        <a [ngClass]="{'hide': etape ==false}" class="button-home" (click)="home()">
+            Retourner à l'accueil
+        </a>
+    </div>
+</div>

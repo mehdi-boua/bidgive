@@ -1,0 +1,15 @@
+<app-header title="Mes favoris"></app-header>
+
+<div class="content">
+    <div class="container">
+        <button [ngClass]="{'active': varencours == true, 'not-active': varencours == false}" (click)="enCours()"> Enchères en cours</button>
+        <button [ngClass]="{'active': varexpirees == true, 'not-active': varexpirees == false}" (click)="expirees()"> Enchères expirées</button>
+    </div>
+
+    <div class="wrapper">
+        <app-card-enchere  full="true"></app-card-enchere>
+    </div>
+</div>
+
+<app-user-nav></app-user-nav>
+ 

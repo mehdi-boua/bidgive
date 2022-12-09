@@ -1,0 +1,31 @@
+.option-livraison {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 0 8px 0 20px;
+    color: $dark-grey;
+    min-height: 30px;
+    border: 1px solid $grey;
+    border-radius: 8px;
+    background-color: $white;
+    margin: 10px 10px 0 0;
+    width: fit-content;
+
+    &::before {
+        content: '';
+        display: block;
+        background: url('/assets/images_app/icon-validate-purple.svg');
+        background-repeat: no-repeat;
+        background-size:contain;
+        position:absolute; 
+        left: 6px;
+        top: 11px;
+        width: 11px;
+        height: 11px;
+    }
+
+    @media screen and (max-width: 320px) {
+       margin: 10px 0;
+    }
+}

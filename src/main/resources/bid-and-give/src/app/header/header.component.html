@@ -1,0 +1,16 @@
+<div [ngClass]="{'solo': enchere!='oui' && produit!='oui' && encherir!='oui', 'duo': produit=='oui'}" class="header">
+
+    <button *ngIf="enchere=='oui'" (click)="precedent()">
+        <img src="./assets/images_app/icon-chevron-left.svg" alt="chevron"/>
+    </button>
+
+    <button *ngIf="encherir=='oui'" (click)="precedentEncherir()">
+        <img src="./assets/images_app/icon-chevron-left.svg" alt="chevron"/>
+    </button>
+
+    <h1 class="header__title">{{title}}</h1>
+
+    <a *ngIf="enchere=='oui' || produit=='oui' || encherir=='oui'" routerLink="/home" class="close">
+        <img src="./assets/images_app/icon-close.svg" alt="icone fermeture"/>
+    </a>
+</div>

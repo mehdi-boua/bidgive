@@ -1,0 +1,176 @@
+<app-header *ngIf="elemProduit != undefined && elemProduit.designation != undefined" title="{{elemProduit.designation}}" produit="oui">
+</app-header>
+
+<div class="content">
+    <div class="bloc-image">
+        <figure class="bloc-image__figure">
+            <img *ngIf="elemProduit != undefined && elemProduit.lienImages!= undefined" class="bloc-image__img"
+                [src]=" listeImage[0] | safe" />
+        </figure>
+        <div *ngIf="elemProduit != undefined && listeImage[1] != undefined" class="bloc-image__gallery">
+            <figure *ngFor="let img of listeImage | slice:1; let index = index; ">
+                <img class="bloc-image__gallery-item" [src]="listeImage[index] | safe" />
+            </figure>
+        </div>
+    </div>
+
+    <div class="bloc-general">
+        <div class="line">
+            <p *ngIf="elemProduit != undefined && elemProduit.designation!= undefined" class="bloc-general__title">
+                {{elemProduit.designation}}</p>
+
+            <div class="bloc-general__options">
+                <img class="bloc-general__options-hearth" src="./assets/images_app/icon-hearth-stroke.svg" />
+                <img class="bloc-genral__options-share" src="./assets/images_app/icon-share.svg" />
+            </div>
+        </div>
+
+        <p class="bloc-general__date">{{elemProduit.debutEnchere}}</p>
+
+        <div class="line">
+            <p class="bloc-general__price">
+                {{fiche.meilleurEnchere}}€
+                <span *ngIf="elemProduit != undefined && elemProduit.prixDepart!= undefined"
+                    class="bloc-general__price-enter">
+                    (prix initial: {{elemProduit.prixDepart}}€)
+                </span>
+            </p>
+
+            <div *ngIf='elemProduit != undefined && elemProduit.idLivrison == true' class="option-livraison">Livraison
+            </div>
+        </div>
+
+        <div class="asso">
+            <div class="line1">
+                Au profit de l'association : 
+                <img src="{{assoc[elemProduit.idAssociation].logo}}"/>
+                <p>{{assoc[elemProduit.idAssociation].nom}}</p>
+            </div>
+            <a href="{{assoc[elemProduit.idAssociation].lien}}" target="_blank">Découvrir l'association</a>
+        </div>
+
+        <p class="bloc-general__time">
+            <img src="./assets/images_app/icon-hour.svg">
+            Temps restant : <span>1 jour, 11h32m</span>
+        </p>
+
+        <p class="bloc-general__bid">
+            <img src="./assets/images_app/icon-bid.svg">
+            Nombres d'enchères : {{fiche.nbParticipants}} <!-- <span *ngIf="elemProduit != undefined && elemProduit.acquereurs!= undefined">
+                {{elemProduit.acquereurs.length}} </span> -->
+        </p>
+
+        <p class="bloc-general__user">
+            <img src="./assets/images_app/icon-profile.svg">
+            Meilleur enchérisseur: <span> {{ fiche.nomMeilleurEncherisseur }} </span>
+        </p>
+    </div>
+
+    <div class="bloc-garanty">
+        <ul>
+            <li class="bloc-garanty__item">
+                <img src="./assets/images_app/icon-car.svg">
+                <p>Faites-vous livrer à partir de 3,99 € ou choisissez la remise en main propre</p>
+            </li>
+
+            <li class="bloc-garanty__item">
+                <img src="./assets/images_app/icon-protection.svg">
+                <p>Bénéficiez de la protection acheteurs</p>
+            </li>
+
+            <li class="bloc-garanty__item">
+                <img src="./assets/images_app/icon-lock.svg">
+                <p>Paiement sécurisé</p>
+            </li>
+        </ul>
+    </div>
+
+    <div class="bloc-vendor">
+        <figure>
+            <img class="bloc-vendor__img" src="./assets/images_bd/avatar.jpg">
+        </figure>
+
+        <div class="bloc-vendor__infos">
+            <p class="bloc-vendor__name"> {{ getDonateur()}}</p>
+            <p class="bloc-vendor__give"> {{ fiche.nbDonations }} donations</p>
+        </div>
+
+        <a class="bloc-vendor__link">
+            <img src="./assets/images_app/icon-chevron-right.svg">
+        </a>
+    </div>
+
+    <div class="bloc-informations">
+        <div class="bloc-informations__description"
+            *ngIf="elemProduit != undefined && elemProduit.description!= undefined">
+            <p class="bloc-informations__name">Description</p>
+            <p class="bloc-informations__description-content"> {{elemProduit.description}}</p>
+        </div>
+        <div class="bloc-informations__criteres">
+            <p class="bloc-informations__name">Critères</p>
+
+            <div class="bloc-informations__list">
+                <div *ngFor="let desc of prodDesc">
+                    <p class="bloc-informations__list-title">{{ desc.desc }}</p>
+                    <p class="bloc-informations__list-text">{{ desc.option }}</p>
+                </div>
+<!--                <div>
+                    <p class="bloc-informations__list-title">Couleur</p>
+                    <p class="bloc-informations__list-text">Rouge</p>
+                </div>
+                <div>
+                    <p class="bloc-informations__list-title">Taille</p>
+                    <p class="bloc-informations__list-text">XS</p>
+                </div>
+                <div>
+                    <p class="bloc-informations__list-title">Marque</p>
+                    <p class="bloc-informations__list-text">Lacoste</p>
+                </div>
+                <div>
+                    <p class="bloc-informations__list-title">Dimensions</p>
+-->                    
+                    <!-- <p class="bloc-informations__list-text"
+                        *ngIf="elemProduit != undefined && elemProduit.dimensions!= undefined">
+                        {{elemProduit.dimensions}}</p> -->
+<!--
+                </div>
+                <div>
+                    <p class="bloc-informations__list-title">TODO</p>
+                    <p class="bloc-informations__list-text">TODO</p>
+                </div>
+                <div>
+                    <p class="bloc-informations__list-title">TODO</p>
+                    <p class="bloc-informations__list-text">TODO</p>
+                </div>
+-->
+            </div>
+        </div>
+    </div>
+
+    <div class="bloc-localisation">
+        <p class="bloc-localisation__title">Localisation</p>
+        <address class="bloc-localisation__location"
+            *ngIf="elemProduit != undefined && elemProduit.nomVille!= undefined"> {{elemProduit.nomVille}}
+        </address>
+
+        <app-map></app-map>
+
+    </div>
+
+    <div class="bloc-mentions">
+        <a class="bloc-mentions__item">
+            <img src="./assets/images_app/icon-attention.svg">
+            <p>Signaler l’annonce</p>
+        </a>
+
+        <a class="bloc-mentions__item">
+            <img src="./assets/images_app/icon-info.svg">
+            <p>Vos droits et obligations</p>
+        </a>
+    </div>
+
+    <div class="footer">
+        <a class="contacter">Contacter</a>
+        <a class="encherir" (click)="redirection(elemProduit)"> Encherir</a>
+    </div>
+</div>
