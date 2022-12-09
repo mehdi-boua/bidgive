@@ -29,11 +29,19 @@ export class CardEnchereComponent implements OnInit {
       data.forEach(
         asso => this.link[asso.id] = asso.logo);
     })
+
+    this.categories = []
+    this.http.get<categorie[]>("/api/cat/all").subscribe(cats =>{
+       cats.forEach(cat=>{
+        this.categories[cat.id] = cat;
+       })
+    })
   }
   
   @Input() filter?: produit[] ;
   @Input() full : string ="";
   association : association[] = [];
+  categories : categorie[] = [];
   listeImage : string[]= [];
   link : any[] = [];
 
