@@ -1,5 +1,6 @@
 package fr.bidgive.api.service;
 
+
 import fr.bidgive.api.controller.returnBeans.FicheProduit;
 import fr.bidgive.api.model.Enchere;
 import fr.bidgive.api.model.Notification;
@@ -9,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import java.sql.Timestamp;
 import java.util.Optional;
 
@@ -17,10 +17,12 @@ import java.util.Optional;
 public class ProduitService {
     @Autowired
     ProduitRepo produitRepo;
-
+    @Autowired
+    HistoriqueEnchereService hes;
     @Autowired
     EnchereService enchereService;
-
+    @Autowired
+    UserService userService;
     @Autowired
     NotificationService notificationService;
 
@@ -51,7 +53,24 @@ public class ProduitService {
     }
 
     public FicheProduit getFiche(final int id){
-        return new FicheProduit(getProduit(id).get());
+        Produit produit = getProduit(id).get();
+        Optional<Enchere> e = enchereService.getEnchere(id);
+        Enchere enchere = e.orElse(null);
+        String donateurPseudo = userService.getUser(produit.getIdDonateur()).get().getPseudo();
+        String meilleurEncherisseur = e.isPresent()
+                ? userService.getUser(e.get().getIdEnchereur()).get().getPseudo()
+                : "Soyez le premier!";
+
+        FicheProduit fp = new FicheProduit(produit, enchere, donateurPseudo, meilleurEncherisseur);
+        fp.setNbDonations(hes.nbEncheres(produit.getId()));
+        fp.setNbParticipants(this.nbDonations(produit.getIdDonateur()));
+
+
+        return fp;
+    }
+
+    public int nbDonations(final int idUser){
+        return produitRepo.nbDonations(idUser);
     }
 
     @Scheduled(cron = "0 0 * * * *")

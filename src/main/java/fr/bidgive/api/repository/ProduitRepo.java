@@ -12,4 +12,7 @@ public interface ProduitRepo extends CrudRepository<Produit, Integer> {
 
     @Query("SELECT * FROM produits p INNER JOIN enchere e on e.idProduit = p.id where e.etat = -1")
     Iterable<Produit> findWaiting();
+
+    @Query("select count(*) from produits where idDonateur = :idDonateur;")
+    int nbDonations(final int idDonateur);
 }

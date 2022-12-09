@@ -23,4 +23,12 @@ public class HistoriqueEnchereService {
 
         return historiqueEnchereRepo.save(he);
     }
+
+    public int nbParticipants(final int idProd){
+        return historiqueEnchereRepo.nbParticipants(idProd);
+    }
+
+    public int nbEncheres(final int idProd){
+        return historiqueEnchereRepo.nbEncheres(idProd);
+    }
 }
