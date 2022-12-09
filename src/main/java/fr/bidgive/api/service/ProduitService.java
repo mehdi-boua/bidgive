@@ -62,8 +62,8 @@ public class ProduitService {
                 : "Soyez le premier!";
 
         FicheProduit fp = new FicheProduit(produit, enchere, donateurPseudo, meilleurEncherisseur);
-        fp.setNbDonations(hes.nbEncheres(produit.getId()));
-        fp.setNbParticipants(this.nbDonations(produit.getIdDonateur()));
+        fp.setNbDonations(this.nbDonations(produit.getIdDonateur()));
+        fp.setNbParticipants(hes.nbEncheres(produit.getId()));
 
 
         return fp;
