@@ -32,7 +32,7 @@ public class ProduitDescriptionService {
 
         for (ProduitDescription p: descs){
             ProdDescReturn elem = new ProdDescReturn();
-            elem.setDesc(cdservice.find(p.getId()).get().getTitre());
+            elem.setDesc(cdservice.find(p.getIdCatDesc()).get().getTitre());
             elem.setOption(p.getOption());
             ret.add(elem);
         }
