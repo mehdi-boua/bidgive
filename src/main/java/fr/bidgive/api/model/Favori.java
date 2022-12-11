@@ -14,7 +14,6 @@ import javax.persistence.Id;
 @Table(name="favoris")
 public class Favori {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @org.springframework.data.annotation.Id
     private @Column("idUser") int idUser;
 
