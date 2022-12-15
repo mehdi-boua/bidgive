@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { GlobalService } from '../services/global.service';
 
@@ -14,10 +14,8 @@ export class HeaderComponent {
   @Input() enchere? : string ="";
   @Input() encherir? : string ="";
   @Input() produit? : string ="";
+  @Output("fct") fct: EventEmitter<any> = new EventEmitter();
 
-  precedent() {
-
-  }
 
   precedentEncherir(){
     this.route.navigate(["/produit/"+this.service.infoProduit.id_meuble]);

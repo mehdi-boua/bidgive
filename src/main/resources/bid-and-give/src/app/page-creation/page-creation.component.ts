@@ -149,26 +149,26 @@ export class PageCreationComponent implements OnInit {
       (document.getElementById("etape2") as HTMLElement).classList.remove('hide');
       (document.getElementById("progression") as HTMLElement).classList.remove('progression1');
       (document.getElementById("progression") as HTMLElement).classList.add('progression2');
+      this.verifEtape2();
       
-      this.disabled = true;
     } else if(!(document.getElementById("etape2") as HTMLElement).classList.contains('hide')) {
       (document.getElementById("etape2") as HTMLElement).classList.add('hide');
       (document.getElementById("etape3") as HTMLElement).classList.remove('hide');
       (document.getElementById("progression") as HTMLElement).classList.remove('progression1');
       (document.getElementById("progression") as HTMLElement).classList.add('progression2');
-      this.disabled = true;
+      this.verifEtape3();
     } else if(!(document.getElementById("etape3") as HTMLElement).classList.contains('hide')) {
       (document.getElementById("etape3") as HTMLElement).classList.add('hide');
       (document.getElementById("etape4") as HTMLElement).classList.remove('hide');
       (document.getElementById("progression") as HTMLElement).classList.remove('progression2');
       (document.getElementById("progression") as HTMLElement).classList.add('progression3');
-      this.disabled = true;  
+      this.verifEtape4(); 
     } else if(!(document.getElementById("etape4") as HTMLElement).classList.contains('hide')) {
       (document.getElementById("etape4") as HTMLElement).classList.add('hide');
       (document.getElementById("etape5") as HTMLElement).classList.remove('hide');
       (document.getElementById("progression") as HTMLElement).classList.remove('progression3');
       (document.getElementById("progression") as HTMLElement).classList.add('progression4');
-      this.disabled = true;  
+      this.verifEtape5();  
     } else if(!(document.getElementById("etape5") as HTMLElement).classList.contains('hide')) {
       (document.getElementById("etape5") as HTMLElement).classList.add('hide');
       (document.getElementById("etape6") as HTMLElement).classList.remove('hide');
@@ -180,6 +180,36 @@ export class PageCreationComponent implements OnInit {
       (document.getElementById("progression") as HTMLElement).classList.add('progression5');
     }
   }
+
+  etapePrecedente() {
+    //console.log("click");
+    if(!(document.getElementById("etape2") as HTMLElement).classList.contains('hide')) {
+      (document.getElementById("etape2") as HTMLElement).classList.add('hide');
+      (document.getElementById("etape1") as HTMLElement).classList.remove('hide');
+      (document.getElementById("progression") as HTMLElement).classList.add('progression1');
+      (document.getElementById("progression") as HTMLElement).classList.remove('progression2');
+      this.verifEtape1();
+
+    } else if(!(document.getElementById("etape3") as HTMLElement).classList.contains('hide')) {
+      (document.getElementById("etape3") as HTMLElement).classList.add('hide');
+      (document.getElementById("etape2") as HTMLElement).classList.remove('hide');
+      (document.getElementById("progression") as HTMLElement).classList.remove('progression3');
+      (document.getElementById("progression") as HTMLElement).classList.add('progression2');
+      this.verifEtape2();
+    } else if(!(document.getElementById("etape4") as HTMLElement).classList.contains('hide')) {
+      (document.getElementById("etape4") as HTMLElement).classList.add('hide');
+      (document.getElementById("etape3") as HTMLElement).classList.remove('hide');
+      (document.getElementById("progression") as HTMLElement).classList.remove('progression4');
+      (document.getElementById("progression") as HTMLElement).classList.add('progression3');
+      this.verifEtape3();  
+    } else if(!(document.getElementById("etape5") as HTMLElement).classList.contains('hide')) {
+      (document.getElementById("etape5") as HTMLElement).classList.add('hide');
+      (document.getElementById("etape4") as HTMLElement).classList.remove('hide');
+      (document.getElementById("progression") as HTMLElement).classList.remove('progression5');
+      (document.getElementById("progression") as HTMLElement).classList.add('progression4');
+      this.verifEtape4(); 
+    }
+  } 
 
   accueil(){
     var statu = 0

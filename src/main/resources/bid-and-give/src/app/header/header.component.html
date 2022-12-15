@@ -1,6 +1,6 @@
 <div [ngClass]="{'solo': enchere!='oui' && produit!='oui' && encherir!='oui', 'duo': produit=='oui'}" class="header">
 
-    <button *ngIf="enchere=='oui'" (click)="precedent()">
+    <button *ngIf="enchere=='oui'" (click)="this.fct.emit()">
         <img src="./assets/images_app/icon-chevron-left.svg" alt="chevron"/>
     </button>
 
