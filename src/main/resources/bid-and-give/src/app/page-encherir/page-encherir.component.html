@@ -46,11 +46,11 @@
 
             <div class="bloc-encherir">
                 <h2 class="bloc-encherir__title">Quel est le montant de votre enchère ?</h2>
-                <p>Indiquez le plafond maximum au-délà duquel vous ne souhaitez plus enchérir.</p>
+                <p>Indiquez le montant que vous souhaitez pour surenchérir.</p>
 
                 <form class="bloc-encherir__form" id="#form">
                     <fieldset>
-                        <legend>Montant maximum</legend>
+                        <legend>Montant souhaité</legend>
 
                         <input class="bloc-encherir__input" value="{{produit.prixDepart+1}}" type="number" [(ngModel)]="montant" (input)="verifMontant($event)" name="input">
                     </fieldset>

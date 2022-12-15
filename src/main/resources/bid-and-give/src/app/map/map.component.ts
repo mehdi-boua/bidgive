@@ -15,12 +15,12 @@ export class MapComponent implements AfterViewInit {
   }
 
 
-  ville = this.service.infoProduit.nomVille;
+  ville = this.service.infoProduit.nomVille.toLowerCase();
   data = data;
 
   getCoord() {
     return this.data.filter(item => {
-      if(item.ville.includes(this.ville)) {
+      if(item.ville.toLowerCase().includes(this.ville)) {
         return item.coordinates[0];
       } else {
         return;

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { user } from '../Interfaces/user';
 
 @Component({
@@ -10,7 +11,7 @@ import { user } from '../Interfaces/user';
 
 export class PageInscriptionComponent {
   errorMessage: any;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private route: Router) { }
 
   @Input() nom: string = "";
   @Input() prenom: string = "";
@@ -55,6 +56,17 @@ export class PageInscriptionComponent {
         next: data => {
           document.querySelector('#error')!.classList.add('hide');
           document.querySelector('#confirm')!.classList.remove('hide');
+
+          setTimeout(() => {
+            this.http.post('/api/user/auth', {mail : this.newuser.mail, password : this.newuser.password}, {observe:'response'}).subscribe(
+              (data) => {
+                console.log(data.status);
+                if(data.status == 200) {
+                    this.route.navigate(['/mon-compte']);
+                }
+              }
+            );
+          }, 2500)
       },
         error: error => {
           this.errorMessage = error.message;
