@@ -16,6 +16,7 @@ export class PageProduitComponent implements OnInit{
   constructor(private service : GlobalService, private http: HttpClient, private route : Router ) {}
   ngOnInit(): void {
     this.elemProduit = this.service.infoProduit;
+    this.elemProduit.nomVille = this.elemProduit.nomVille.charAt(0).toUpperCase() + this.elemProduit.nomVille.slice(1) ;
     this.getImages();
 
     this.assoc = [];
