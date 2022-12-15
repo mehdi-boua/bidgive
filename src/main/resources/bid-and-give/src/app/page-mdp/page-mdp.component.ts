@@ -7,4 +7,17 @@ import { Component } from '@angular/core';
 })
 export class PageMdpComponent {
 
+
+
+  Envoi() {
+    var pattern = /^[a-z0-9.-]{2,}@+[a-z0-9.-]{2,}$/i;
+
+    if( pattern.test((document.getElementById('mail') as HTMLInputElement).value)) {
+      document.getElementById('error')?.classList.add('hide');
+      document.getElementById('send')?.classList.remove('hide');
+    } else {
+      document.getElementById('send')?.classList.add('hide');
+      document.getElementById('error')?.classList.remove('hide');
+    }
+  }
 }

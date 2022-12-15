@@ -51,8 +51,18 @@ export class PageInscriptionComponent {
 
     console.log(this.newuser);
 
-    if (this.newuser.mail != "" && this.newuser.password != "" && this.newuser.ville != "" && this.newuser.codePostal != "" && this.newuser.pseudo != "") {
-      this.http.post<any>('/api/user/new', this.newuser).subscribe({
+    if (this.newuser.nom != "" &&
+    this.newuser.prenom != "" &&
+    this.newuser.pseudo != "" &&
+     this.newuser.mail != "" && 
+     this.newuser.password != "" && 
+     this.newuser.ville != "" &&
+     this.newuser.adresse != "" &&
+     this.newuser.telephone !="" && 
+     this.newuser.codePostal != "") {
+
+      // Verification email ou pseudo déjà pris 
+     this.http.post<any>('/api/user/new', this.newuser).subscribe({
         next: data => {
           document.querySelector('#error')!.classList.add('hide');
           document.querySelector('#confirm')!.classList.remove('hide');
