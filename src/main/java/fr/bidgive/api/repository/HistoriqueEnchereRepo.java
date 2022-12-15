@@ -10,7 +10,7 @@ public interface HistoriqueEnchereRepo extends CrudRepository<HistoriqueEnchere,
     @Query("SELECT * FROM historiqueencheres WHERE idproduit = :idProduit")
     public Iterable<HistoriqueEnchere> findAllByIdProduit(final int idProduit);
 
-    @Query("SELECT distinct (idProduit), idEnchereur, max(valeur) FROM historiqueencheres WHERE idEnchereur = :idUser")
+    @Query("SELECT distinct (idProduit), idEnchereur, max(valeur) FROM historiqueencheres WHERE idEnchereur = :idUser GROUP BY idProduit")
     public Iterable<HistoriqueEnchere> findAllByIdUser(final int idUser);
 
     @Query("select count(*) from historiqueencheres where idproduit = :idProduit")
