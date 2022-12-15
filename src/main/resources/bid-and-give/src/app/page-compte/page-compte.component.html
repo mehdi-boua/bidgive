@@ -19,17 +19,15 @@
             <div id="infosUser" class="more-info-user hide">
                 <div class="item">
                     <p class="type"> Nom : </p>
-                    <span class="item-info" id="nom" contenteditable="false">{{user[0].nom}}</span>
+                    <span class="item-info" id="nom">{{user[0].nom}}</span>
                 </div>
                 <div class="item">
                     <p class="type"> Prénom : </p>
-                    <p class="item-info" id="prenom" contenteditable="false">{{user[0].prenom}}</p>
+                    <p class="item-info" id="prenom">{{user[0].prenom}}</p>
                 </div>
                 <div class="item">
                     <p class="type"> Pseudo : </p>
-                    <p class="item-info" id="pseudo" contenteditable="false">{{user[0].pseudo}}</p> 
-                    <button class="btn" (click)="Ajouter($event)"><img src="../../assets/images_app/icon-write.svg"/></button>
-                    <button class="btn hide" (click)="Confirmer($event)"><img src="../../assets/images_app/icon-validate.svg"/></button> 
+                    <p class="item-info" id="pseudo">{{user[0].pseudo}}</p>  
                 </div>
                 <div class="item">
                     <p class="type"> Tél : </p>

@@ -59,7 +59,6 @@ export class PageCompteComponent implements OnInit {
 
     (e.currentTarget as HTMLElement).classList.add('hide');
     this.user[0].password = sessionStorage.getItem("mdp");
-    this.user[0].pseudo = document.getElementById("pseudo")!.innerHTML;
     this.user[0].telephone = document.getElementById('tel')!.innerHTML.toString();
     this.user[0].codePostal = document.getElementById('cp')!.innerHTML.toString(); 
     this.user[0].adresse = document.getElementById('adresse')!.innerHTML;
