@@ -22,7 +22,9 @@ export class PageConnexionComponent {
       (data) => {
         console.log(data.status);
         if(data.status == 200) {
+            sessionStorage.setItem('mdp', this.password);
             this.route.navigate(['/mon-compte']);
+
         }
       }
     );
