@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { produit } from '../Interfaces/produit';
 import { user } from '../Interfaces/user';
 import { GlobalService } from '../services/global.service';
 
@@ -15,32 +16,60 @@ export class PageCompteComponent implements OnInit {
   constructor(private service: GlobalService, @Inject(Router) private route: Router, private http: HttpClient) { }
 
   ngOnInit(): void {
-    console.log(sessionStorage.getItem("mdp"));
     if (this.service.user.length == 0 || this.service.user[0].nom == "") {
       this.http.get<user>("/api/user/get", { observe: 'response' }).subscribe(data => {
         if (data.body == null) {
           this.route.navigate(["/connexion"]);
         } else {
           this.service.user.push(data.body)
-          console.log(this.service.user)
+          //console.log(this.service.user)
         }
       })
     }
 
+    
+    /* this.encheres = [];
+    this.http.get<any[]>("/api/ench/all").subscribe(data => {
+      data.forEach(ench => {
+        this.encheres.push(ench);
+      })
+    })
+    console.log(this.encheres); */
+
+
+    setTimeout(() => { 
+    this.dons = [];
+    this.http.get<produit[]>("/api/prod/all").subscribe(data => {
+      data.forEach(don => {
+        if(don.idDonateur == this.user[0].id) {
+          this.dons.push(don);
+        }
+      })
+    })
+    console.log(this.dons);
+    }, 1000)
   }
+
 
   user = this.service.user;
   avatar: string = "";
   elt: any;
+  dons: produit[] = [];
+  encheres : any[] = [];
 
   toggleMore(e: Event) {
     let evt = e.currentTarget as HTMLInputElement;
-    evt.querySelector("div")?.classList.toggle("hide");
+    evt.nextElementSibling!.classList.toggle("hide");
   }
 
   toggleInfos() {
     let doc = document.querySelector('#infosUser');
     doc!.classList.toggle('hide');
+  }
+
+  toggleDons() {
+    let sel = document.querySelector('#hide-dons');
+    sel!.classList.toggle('hide-dons');
   }
 
   Ajouter(e: Event) {

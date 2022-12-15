@@ -33,3 +33,25 @@ app-user-nav {
         width: 101vw;
     }
 }
+
+.page-compte {
+    app-card-enchere {
+        .encheres-item {
+            margin: 10px 0 5px;
+            border: .5px solid $primary;
+            background-color: $white;
+            border-radius: 8px;
+            width: 90%;
+
+            .option-hearth {
+                @media screen and (max-width: 480px) {
+                    display: none;
+                }
+            }
+
+            @media screen and (max-width: 480px) {
+                width: 88%;
+            }
+        }
+    }
+}

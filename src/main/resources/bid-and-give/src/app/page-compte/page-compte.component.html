@@ -1,105 +1,112 @@
 <app-header title="Mon compte"></app-header>
 
-<div class="content">
-    <div class="bloc-card">
-        <div class="card-header">
-            <div class="line1">
-                <img  class="img-profil" src="{{user[0].image}}" />
-                <div class="informations">
-                    <p  class="informations__pseudo">{{user[0].pseudo}}</p>
-                    <div class="informations__score">
-                        <img  *ngFor='let in of [0,1,2,3];let i = index' src="./assets/images_app/icon-star-full.svg"/>
-                        <img src="./assets/images_app/icon-star.svg"/>
+<div class="page-compte">
+    <div class="content">
+        <div class="bloc-card">
+            <div class="card-header">
+                <div class="line1">
+                    <img *ngIf="user[0] != undefined && user[0].image != ''" class="img-profil" src="{{user[0].image}}" />
+                    <div class="informations">
+                        <p *ngIf="user[0] != undefined && user[0].pseudo != ''" class="informations__pseudo">{{user[0].pseudo}}</p>
+                        <div class="informations__score">
+                            <img  *ngFor='let in of [0,1,2,3];let i = index' src="./assets/images_app/icon-star-full.svg"/>
+                            <img src="./assets/images_app/icon-star.svg"/>
+                        </div>
+                        <div class="informations__link" (click)="toggleInfos()" >
+                            <img src="./assets/images_app/icon-chevron-right.svg">
+                        </div>
+                    </div >
+                </div>
+                <div id="infosUser" class="more-info-user hide">
+                    <div class="item">
+                        <p class="type"> Nom : </p>
+                        <span *ngIf="user[0] != undefined && user[0].nom != ''" class="item-info" id="nom">{{user[0].nom}}</span>
                     </div>
-                    <div class="informations__link" (click)="toggleInfos()" >
-                        <img src="./assets/images_app/icon-chevron-right.svg">
+                    <div class="item">
+                        <p class="type"> Prénom : </p>
+                        <p *ngIf="user[0] != undefined && user[0].prenom != ''" class="item-info" id="prenom">{{user[0].prenom}}</p>
                     </div>
-                </div >
+                    <div class="item">
+                        <p class="type"> Pseudo : </p>
+                        <p *ngIf="user[0] != undefined && user[0].pseudo != ''" class="item-info" id="pseudo">{{user[0].pseudo}}</p>  
+                    </div>
+                    <div class="item">
+                        <p class="type"> Tél : </p>
+                        <p *ngIf="user[0] != undefined && user[0].telephone != ''" class="item-info" id="tel" contenteditable="false">{{user[0].telephone}}</p>
+                        <button class="btn" (click)="Ajouter($event)"><img src="../../assets/images_app/icon-write.svg"/></button>
+                        <button class="btn hide" (click)="Confirmer($event)"><img src="../../assets/images_app/icon-validate.svg"/></button>
+                    </div>
+                    <div class="item">
+                        <p class="type"> Adresse : </p>
+                        <p *ngIf="user[0] != undefined && user[0].adresse != ''" class="item-info" id="adresse" contenteditable="false">{{user[0].adresse}}</p>
+                        <button class="btn" (click)="Ajouter($event)"><img src="../../assets/images_app/icon-write.svg"/></button>
+                        <button class="btn hide" (click)="Confirmer($event)"><img src="../../assets/images_app/icon-validate.svg"/></button>
+                    </div>
+                    <div class="item">
+                        <p class="type"> Ville : </p>
+                        <p *ngIf="user[0] != undefined && user[0].ville != ''" class="item-info" id="ville" contenteditable="false">{{user[0].ville}}</p>
+                        <button class="btn" (click)="Ajouter($event)"><img src="../../assets/images_app/icon-write.svg"/></button>
+                        <button class="btn hide" (click)="Confirmer($event)"><img src="../../assets/images_app/icon-validate.svg"/></button>
+                    </div>
+                    <div class="item">
+                        <p class="type"> Code Postal : </p>
+                        <p *ngIf="user[0] != undefined && user[0].codePostal != ''" class="item-info" id="cp" contenteditable="false">{{user[0].codePostal}}</p>
+                        <button class="btn" (click)="Ajouter($event)"><img src="../../assets/images_app/icon-write.svg"/></button>
+                        <button class="btn hide" (click)="Confirmer($event)"><img src="../../assets/images_app/icon-validate.svg"/></button>
+                    </div>
+                    <div class="item">
+                        Modifier mon avatar :
+                        <input type="text" placeholder="Lien d'une image en ligne" name="avatar" [(ngModel)]="avatar">
+                        <button class="btn-modif" (click)="updateImage()">Modifier</button>
+                    </div>
+                </div>
             </div>
-            <div id="infosUser" class="more-info-user hide">
-                <div class="item">
-                    <p class="type"> Nom : </p>
-                    <span class="item-info" id="nom">{{user[0].nom}}</span>
+        
+            <div class="card-portefeuille">
+                <p class="card-portefeuille__title">Gains récoltés</p>
+                <span  *ngIf="user[0] != undefined" class="card-portefeuille__solde">
+                    {{user[0].solde}} €
+                </span>
+                <p class="card-portefeuille__complement">Gains pour les associations issus de donations </p>
+                
+                <div class="card-portefeuille__link" (click)="toggleDons()">
+                    <img src="./assets/images_app/icon-chevron-right.svg">
                 </div>
-                <div class="item">
-                    <p class="type"> Prénom : </p>
-                    <p class="item-info" id="prenom">{{user[0].prenom}}</p>
-                </div>
-                <div class="item">
-                    <p class="type"> Pseudo : </p>
-                    <p class="item-info" id="pseudo">{{user[0].pseudo}}</p>  
-                </div>
-                <div class="item">
-                    <p class="type"> Tél : </p>
-                    <p class="item-info" id="tel" contenteditable="false">{{user[0].telephone}}</p>
-                    <button class="btn" (click)="Ajouter($event)"><img src="../../assets/images_app/icon-write.svg"/></button>
-                    <button class="btn hide" (click)="Confirmer($event)"><img src="../../assets/images_app/icon-validate.svg"/></button>
-                </div>
-                <div class="item">
-                    <p class="type"> Adresse : </p>
-                    <p class="item-info" id="adresse" contenteditable="false">{{user[0].adresse}}</p>
-                    <button class="btn" (click)="Ajouter($event)"><img src="../../assets/images_app/icon-write.svg"/></button>
-                    <button class="btn hide" (click)="Confirmer($event)"><img src="../../assets/images_app/icon-validate.svg"/></button>
-                </div>
-                <div class="item">
-                    <p class="type"> Ville : </p>
-                    <p class="item-info" id="ville" contenteditable="false">{{user[0].ville}}</p>
-                    <button class="btn" (click)="Ajouter($event)"><img src="../../assets/images_app/icon-write.svg"/></button>
-                    <button class="btn hide" (click)="Confirmer($event)"><img src="../../assets/images_app/icon-validate.svg"/></button>
-                </div>
-                <div class="item">
-                    <p class="type"> Code Postal : </p>
-                    <p class="item-info" id="cp" contenteditable="false">{{user[0].codePostal}}</p>
-                    <button class="btn" (click)="Ajouter($event)"><img src="../../assets/images_app/icon-write.svg"/></button>
-                    <button class="btn hide" (click)="Confirmer($event)"><img src="../../assets/images_app/icon-validate.svg"/></button>
-                </div>
-                <div class="item">
-                    Modifier mon avatar :
-                    <input type="text" placeholder="Lien d'une image en ligne" name="avatar" [(ngModel)]="avatar">
-                    <button class="btn-modif" (click)="updateImage()">Modifier</button>
+    
+                <div class=" card-portefeuille__list hide-dons" id="hide-dons">
+                    <p class="title"> Liste des dons : </p> 
+                    <app-card-enchere class="spe" [filter]="dons"></app-card-enchere>
                 </div>
             </div>
         </div>
     
-        <div class="card-portefeuille">
-            <p class="card-portefeuille__title">Gains récoltés</p>
-            <span  class="card-portefeuille__solde">
-                {{user[0].solde}} €
-            </span>
-            <p class="card-portefeuille__complement">Gains pour les associations issus de donations </p>
-            
-            <a class="card-portefeuille__link" >
-                <img src="./assets/images_app/icon-chevron-right.svg">
-            </a>
-        </div>
+        <ul class="options">
+            <li class="options__item">
+                <p class="options__item-title" (click)="toggleMore($event)"> 
+                    <img class="options__item-icon" src="./assets/images_app/icon-list.svg" alt="icon enchère">
+                    Mes enchères
+                </p>
+                <div class="options__item-more hide" id="enc">TODO</div>
+            </li>
+            <li class="options__item">
+                <p class="options__item-title" (click)="toggleMore($event)">
+                    <img class="options__item-icon" src="./assets/images_app/icon-shop.svg" alt="icon transactions">
+                    Mes transactions
+                </p>
+                <div class="options__item-more hide" id="tra">TODO</div>
+            </li>
+            <li class="options__item">
+                <p class="options__item-title" (click)="toggleMore($event)">
+                    <img class="options__item-icon" src="./assets/images_app/icon-setting.svg" alt="icon paramètres">
+                    Paramètres
+                </p>
+                <div class="options__item-more hide" id="par">Ajouter un moyen de paiement</div>
+                <div class="options__item-more hide" id="par">TODO</div>
+            </li>
+            <li class="options__item deconnexion">
+                <p class="options__item-title" (click)="disconnect()">Déconnexion</p>
+            </li>
+        </ul>
     </div>
-
-    <ul class="options">
-        <li class="options__item" (click)="toggleMore($event)">
-            <p class="options__item-title"> 
-                <img class="options__item-icon" src="./assets/images_app/icon-list.svg" alt="icon enchère">
-                Mes enchères
-            </p>
-            <div class="options__item-more hide" id="enc">TODO</div>
-        </li>
-        <li class="options__item" (click)="toggleMore($event)">
-            <p class="options__item-title">
-                <img class="options__item-icon" src="./assets/images_app/icon-shop.svg" alt="icon transactions">
-                Mes transactions
-            </p>
-            <div class="options__item-more hide" id="tra">TODO</div>
-        </li>
-        <li class="options__item" (click)="toggleMore($event)">
-            <p class="options__item-title">
-                <img class="options__item-icon" src="./assets/images_app/icon-setting.svg" alt="icon paramètres">
-                Paramètres
-            </p>
-            <div class="options__item-more hide" id="par">Ajouter un moyen de paiement</div>
-            <div class="options__item-more hide" id="par">TODO</div>
-        </li>
-        <li class="options__item deconnexion">
-            <p class="options__item-title" (click)="disconnect()">Déconnexion</p>
-        </li>
-    </ul>
+    <app-user-nav></app-user-nav>
 </div>
-<app-user-nav></app-user-nav>
