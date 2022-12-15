@@ -1,19 +1,16 @@
 @import '../page-inscription/page-inscription.component.scss';
 
+.page-mdp {
 
-.info {
-    display: block;
-    margin-left: 15px;
-}
+    .send {
+        color: green;
+    }
 
-.container {
-    display: block;
-}
+    .error {
+        color : $red;
+    }
 
-.form {
-    display: flex; flex-direction: column
-}
-
-.submit {
-    width: fit-content;
+    .hide {
+        display: none;
+    }
 }

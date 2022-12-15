@@ -1,23 +1,27 @@
-<div class="header">
-    <img class="header__logo" src="./assets/images_app/logo2.svg" alt="logo" />
-</div>
-
-<h1 class="title">Mot de passe oublié</h1>
-
-<div class="content">
-    <div class="container">
-        <p class="info">Renseignez votre adresse mail, pour recevoir un nouveau mot de passe.</p>
-        <form class="form">
-            <div class="form__item">
-                <label>Adresse mail</label>
-                <input type="mail" />
-            </div>
-        
-            <input type="submit" value="Réinitialiser mon mot de passe" class="submit">
-        </form>
+<div class="page-mdp">
+    <div class="header">
+        <img class="header__logo" src="./assets/images_app/logo2.svg" alt="logo" />
     </div>
-
-    <div class="others">
-        <p><a routerLink="/home">Retourner sur la page d'accueil</a></p>
+    
+    <h1 class="title">Mot de passe oublié</h1>
+    
+    <div class="content">
+        <div class="container">
+            <p class="info">Renseignez votre adresse mail, pour recevoir un nouveau mot de passe.</p>
+            <form class="form">
+                <div class="form__item">
+                    <label>Adresse mail</label>
+                    <input type="email" id="mail" name="mail"/>
+                </div>
+                <p class="send hide" id="send"> Un mail de réinitialisation vient de vous être envoyé sur votre boîte mail</p>
+                <p class="error hide" id="error">L'adresse mail saisie est invalide, réessayez</p>
+            
+                <input type="submit" value="Réinitialiser mon mot de passe" class="submit" (click)="Envoi()">
+            </form>
+        </div>
+    
+        <div class="others">
+            <p><a routerLink="/home">Retourner sur la page d'accueil</a></p>
+        </div>
     </div>
 </div>
