@@ -31,6 +31,10 @@
                         <p *ngIf="user[0] != undefined && user[0].pseudo != ''" class="item-info" id="pseudo">{{user[0].pseudo}}</p>  
                     </div>
                     <div class="item">
+                        <p class="type"> Mail : </p>
+                        <p *ngIf="user[0] != undefined && user[0].mail != ''" class="item-info" id="pseudo">{{user[0].mail}}</p>  
+                    </div>
+                    <div class="item">
                         <p class="type"> Tél : </p>
                         <p *ngIf="user[0] != undefined && user[0].telephone != ''" class="item-info" id="tel" contenteditable="false">{{user[0].telephone}}</p>
                         <button class="btn" (click)="Ajouter($event)"><img src="../../assets/images_app/icon-write.svg"/></button>
@@ -86,14 +90,16 @@
                     <img class="options__item-icon" src="./assets/images_app/icon-list.svg" alt="icon enchère">
                     Mes enchères
                 </p>
-                <div class="options__item-more hide" id="enc">TODO</div>
+                <div class="options__item-more hide" id="enc">
+                    <app-card-enchere [filter]="encheres"></app-card-enchere>
+                </div>
             </li>
             <li class="options__item">
                 <p class="options__item-title" (click)="toggleMore($event)">
                     <img class="options__item-icon" src="./assets/images_app/icon-shop.svg" alt="icon transactions">
                     Mes transactions
                 </p>
-                <div class="options__item-more hide" id="tra">TODO</div>
+                <div class="options__item-more hide" id="tra">TODO : ici les enchères remportées en attente de paiement ou payées</div>
             </li>
             <li class="options__item">
                 <p class="options__item-title" (click)="toggleMore($event)">

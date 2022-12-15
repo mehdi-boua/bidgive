@@ -36,6 +36,11 @@ app-user-nav {
 
 .page-compte {
     app-card-enchere {
+
+        .encheres__bloc {
+            padding-bottom: 15px;
+        }
+
         .encheres-item {
             margin: 10px 0 5px;
             border: .5px solid $primary;

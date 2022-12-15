@@ -185,6 +185,7 @@
             position: relative;
             display: flex;
             flex-direction: column;
+            margin-bottom: 15px;
             padding: 20px;
             background-color: $light-purple;
             border: .5px solid $grey;
@@ -276,7 +277,6 @@
                 &-more {
                     margin-top: 10px;
                     font-size: 17px;
-                    height: 0;
                     font-weight: 400 !important;
     
                     &.hide {

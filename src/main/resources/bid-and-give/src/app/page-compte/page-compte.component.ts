@@ -26,6 +26,14 @@ export class PageCompteComponent implements OnInit {
         }
       })
     }
+
+    this.encheres = [];
+    this.http.get<produit[]>("/api/user/enchs").subscribe(data => {
+      data.forEach(ench => {
+        this.encheres.push(ench);
+      })
+    })
+    
     setTimeout(() => { 
     this.dons = [];
     this.http.get<produit[]>("/api/prod/all").subscribe(data => {
@@ -36,14 +44,6 @@ export class PageCompteComponent implements OnInit {
       })
     })
     console.log(this.dons);
-
-    this.encheres = [];
-    this.http.get<any[]>("/api/user/enchs").subscribe(data => {
-      data.forEach(ench => {
-        this.encheres.push(ench);
-      })
-    })
-    console.log("encheres"+this.encheres);
     }, 5000)
   }
 
@@ -52,7 +52,7 @@ export class PageCompteComponent implements OnInit {
   avatar: string = "";
   elt: any;
   dons: produit[] = [];
-  encheres : any[] = [];
+  encheres : produit[] = [];
 
   toggleMore(e: Event) {
     let evt = e.currentTarget as HTMLInputElement;
