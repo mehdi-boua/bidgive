@@ -125,34 +125,34 @@ public class UserController {
             return ResponseEntity.noContent().build();
     
         if(user.getNom() != null)
-            dbuser.setNom("");
+            dbuser.setNom(user.getNom());
 
         if(user.getPrenom() != null)
-            dbuser.setPrenom("");
+            dbuser.setPrenom(user.getPrenom());
 
-        if(user.getPseudo() != null || "".equals(user.getPassword()))
-            dbuser.setPseudo(user.getNom().toLowerCase().charAt(0) + user.getPrenom().toLowerCase());
+        if(user.getPseudo() != null || !"".equals(user.getPseudo()))
+            dbuser.setPseudo(user.getPseudo());
 
-        if(user.getVille() != null)
-            dbuser.setVille("");
+        if(user.getVille() != null || !"".equals(user.getVille()))
+            dbuser.setVille(user.getVille());
 
-        if(user.getAdresse() != null)
-            dbuser.setAdresse("");
+        if(user.getAdresse() != null || !"".equals(user.getAdresse()))
+            dbuser.setAdresse(user.getAdresse());
 
-        if(user.getPassword() != null || "".equals(user.getPassword()))
-            dbuser.setPassword(user.getPrenom().toLowerCase());
+        if(user.getPassword() != null || !"".equals(user.getPassword()))
+            dbuser.setPassword(user.getPassword());
 
-        if(user.getMail() != null || "".equals(user.getMail()))
-            dbuser.setMail(user.getPrenom()+"@mail.fr");
+        if(user.getMail() != null || !"".equals(user.getMail()))
+            dbuser.setMail(user.getMail());
 
         if(user.getTelephone() != null)
-            dbuser.setTelephone("");
+            dbuser.setTelephone(user.getTelephone());
 
-        if(user.getImage() != null || "".equals(user.getImage()))
-            dbuser.setImage("./assets/images_bd/avatar.jpg");
+        if(user.getImage() != null || !"".equals(user.getImage()))
+            dbuser.setImage(user.getImage());
 
-        if(user.getCodePostal() != null)
-            dbuser.setCodePostal("");
+        if(user.getCodePostal() != null || !"".equals(user.getCodePostal()))
+            dbuser.setCodePostal(user.getCodePostal());
 
         if(user.getSolde() != 0)
             dbuser.setSolde(user.getSolde());
