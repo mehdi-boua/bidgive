@@ -118,33 +118,46 @@ public class UserController {
     @CrossOrigin(origins = "*")
     @PutMapping("/update")
     public ResponseEntity updateUser(@RequestBody User user){
+        Optional<User> u = userService.getUser(user.getId());
+        User dbuser = u.orElse(null);
+        
+        if(dbuser == null)
+            return ResponseEntity.noContent().build();
+    
         if(user.getNom() != null)
-            user.setNom("");
+            dbuser.setNom("");
 
-        if(user.getPrenom()!= null)
-            user.setPrenom("");
+        if(user.getPrenom() != null)
+            dbuser.setPrenom("");
 
-        if(user.getPseudo()!= null || "".equals(user.getPassword()))
-            user.setPseudo(user.getNom().toLowerCase().charAt(0) + user.getPrenom().toLowerCase());
+        if(user.getPseudo() != null || "".equals(user.getPassword()))
+            dbuser.setPseudo(user.getNom().toLowerCase().charAt(0) + user.getPrenom().toLowerCase());
 
         if(user.getVille() != null)
-            user.setVille("");
+            dbuser.setVille("");
 
         if(user.getAdresse() != null)
-            user.setAdresse("");
+            dbuser.setAdresse("");
 
         if(user.getPassword() != null || "".equals(user.getPassword()))
-            user.setPassword(user.getPrenom().toLowerCase());
+            dbuser.setPassword(user.getPrenom().toLowerCase());
 
         if(user.getMail() != null || "".equals(user.getMail()))
-            user.setMail(user.getPrenom()+"@mail.fr");
+            dbuser.setMail(user.getPrenom()+"@mail.fr");
 
         if(user.getTelephone() != null)
-            user.setTelephone("");
+            dbuser.setTelephone("");
 
-        user.setSolde(0);
+        if(user.getImage() != null || "".equals(user.getImage()))
+            dbuser.setImage("./assets/images_bd/avatar.jpg");
 
-        if(userService.saveUser(user) != null)
+        if(user.getCodePostal() != null)
+            dbuser.setCodePostal("");
+
+        if(user.getSolde() != 0)
+            dbuser.setSolde(user.getSolde());
+
+        if(userService.saveUser(dbuser) == null)
             return ResponseEntity.internalServerError().build();
 
         return ResponseEntity.ok().build();
