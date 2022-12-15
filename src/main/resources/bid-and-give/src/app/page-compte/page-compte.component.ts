@@ -26,17 +26,6 @@ export class PageCompteComponent implements OnInit {
         }
       })
     }
-
-    
-    /* this.encheres = [];
-    this.http.get<any[]>("/api/ench/all").subscribe(data => {
-      data.forEach(ench => {
-        this.encheres.push(ench);
-      })
-    })
-    console.log(this.encheres); */
-
-
     setTimeout(() => { 
     this.dons = [];
     this.http.get<produit[]>("/api/prod/all").subscribe(data => {
@@ -47,7 +36,15 @@ export class PageCompteComponent implements OnInit {
       })
     })
     console.log(this.dons);
-    }, 1000)
+
+    this.encheres = [];
+    this.http.get<any[]>("/api/user/enchs").subscribe(data => {
+      data.forEach(ench => {
+        this.encheres.push(ench);
+      })
+    })
+    console.log("encheres"+this.encheres);
+    }, 5000)
   }
 
 
