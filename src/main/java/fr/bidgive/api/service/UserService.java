@@ -1,5 +1,6 @@
 package fr.bidgive.api.service;
 
+import fr.bidgive.api.model.Produit;
 import fr.bidgive.api.model.User;
 import fr.bidgive.api.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,9 @@ import java.util.Optional;
 public class UserService {
     @Autowired
     UserRepo userRepo;
+
+    @Autowired
+    HistoriqueEnchereService hes;
 
     public Optional<User> getUser(final int idUser){
         return  userRepo.findById(idUser);

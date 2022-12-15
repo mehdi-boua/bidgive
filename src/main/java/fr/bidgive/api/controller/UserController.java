@@ -1,7 +1,9 @@
 package fr.bidgive.api.controller;
 
 import fr.bidgive.api.controller.returnBeans.UserReturn;
+import fr.bidgive.api.model.Produit;
 import fr.bidgive.api.model.User;
+import fr.bidgive.api.service.ProduitService;
 import fr.bidgive.api.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +22,9 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    ProduitService ps;
+
 
     @GetMapping("/{id}")
     public UserReturn getUser(@PathVariable final int id){
@@ -37,6 +42,16 @@ public class UserController {
 
         return u.map(UserReturn::new).orElse(null);
 
+    }
+
+    @CrossOrigin(origins = "*")
+    @GetMapping("/enchs")
+    public Iterable<Produit> userEncheres(HttpServletRequest request){
+        if(request.getSession().getAttribute("idUser") == null)
+            return null;
+
+        int idUser = (int) request.getSession().getAttribute("idUser");
+        return ps.userEncheres(idUser);
     }
 
     @CrossOrigin(origins = "*")

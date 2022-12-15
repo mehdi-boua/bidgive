@@ -18,7 +18,8 @@ public class EnchereService {
     HistoriqueEnchereService hes;
 
     public Iterable<Enchere> getAll(){
-        return enchereRepo.getActiveEncheres();
+        //return enchereRepo.getActiveEncheres();
+        return enchereRepo.findAll();
     }
 
     public Iterable<Enchere> getWaiting(){

@@ -11,6 +11,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -67,6 +69,18 @@ public class ProduitService {
 
 
         return fp;
+    }
+
+    public Iterable<Produit> userEncheres(final int idUser){
+        Iterable<Enchere> histo = hes.getUserParticipations(idUser);
+        List<Produit> produitList = new ArrayList<>();
+
+        for(Enchere enchere: histo){
+            Produit temp = this.getProduit(enchere.getIdProduit()).get();
+            produitList.add(temp);
+        }
+
+        return produitList;
     }
 
     public int nbDonations(final int idUser){
