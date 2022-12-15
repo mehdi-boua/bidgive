@@ -3,9 +3,9 @@ export interface user{
     nom: string
     prenom: string
     pseudo: string
-    mail: string
-    password : string
     ville: string
+    mail: string
+    password : string |null
     adresse: string
     telephone: string
     solde: number

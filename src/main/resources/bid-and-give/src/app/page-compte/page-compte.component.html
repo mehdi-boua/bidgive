@@ -20,14 +20,10 @@
                 <div class="item">
                     <p class="type"> Nom : </p>
                     <span class="item-info" id="nom" contenteditable="false">{{user[0].nom}}</span>
-                    <button class="btn" (click)="Ajouter($event)"><img src="../../assets/images_app/icon-write.svg"/></button>
-                    <button class="btn hide" (click)="Confirmer($event)"><img src="../../assets/images_app/icon-validate.svg"/></button>
                 </div>
                 <div class="item">
                     <p class="type"> Prénom : </p>
                     <p class="item-info" id="prenom" contenteditable="false">{{user[0].prenom}}</p>
-                    <button class="btn" (click)="Ajouter($event)"><img src="../../assets/images_app/icon-write.svg"/></button>
-                    <button class="btn hide" (click)="Confirmer($event)"><img src="../../assets/images_app/icon-validate.svg"/></button>
                 </div>
                 <div class="item">
                     <p class="type"> Pseudo : </p>
@@ -74,7 +70,7 @@
             </span>
             <p class="card-portefeuille__complement">Gains pour les associations issus de donations </p>
             
-            <a class="card-portefeuille__link" routerLink="/home" >
+            <a class="card-portefeuille__link" >
                 <img src="./assets/images_app/icon-chevron-right.svg">
             </a>
         </div>
