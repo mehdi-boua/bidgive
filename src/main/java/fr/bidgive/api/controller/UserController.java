@@ -130,28 +130,28 @@ public class UserController {
         if(user.getPrenom() != null)
             dbuser.setPrenom(user.getPrenom());
 
-        if(user.getPseudo() != null || !"".equals(user.getPseudo()))
+        if(user.getPseudo() != null && !"".equals(user.getPseudo()))
             dbuser.setPseudo(user.getPseudo());
 
-        if(user.getVille() != null || !"".equals(user.getVille()))
+        if(user.getVille() != null && !"".equals(user.getVille()))
             dbuser.setVille(user.getVille());
 
-        if(user.getAdresse() != null || !"".equals(user.getAdresse()))
+        if(user.getAdresse() != null && !"".equals(user.getAdresse()))
             dbuser.setAdresse(user.getAdresse());
 
-        if(user.getPassword() != null || !"".equals(user.getPassword()))
+        if(user.getPassword() != null && !"".equals(user.getPassword()))
             dbuser.setPassword(user.getPassword());
 
-        if(user.getMail() != null || !"".equals(user.getMail()))
+        if(user.getMail() != null && !"".equals(user.getMail()))
             dbuser.setMail(user.getMail());
 
         if(user.getTelephone() != null)
             dbuser.setTelephone(user.getTelephone());
 
-        if(user.getImage() != null || !"".equals(user.getImage()))
+        if(user.getImage() != null && !"".equals(user.getImage()))
             dbuser.setImage(user.getImage());
 
-        if(user.getCodePostal() != null || !"".equals(user.getCodePostal()))
+        if(user.getCodePostal() != null && !"".equals(user.getCodePostal()))
             dbuser.setCodePostal(user.getCodePostal());
 
         if(user.getSolde() != 0)
