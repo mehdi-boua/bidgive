@@ -107,14 +107,8 @@ export class PageCreationComponent implements OnInit {
       console.log("ici")
       this.disabled = false;
 
-      this.prod.prixDepart = Number((document.getElementById('inputdeb') as  HTMLInputElement ).value);
-      this.prod.prixReserve = this.prod.prixDepart;
-      
+      this.prod.prixDepart = Number((document.getElementById('inputdeb') as  HTMLInputElement ).value);      
       this.prod.dureeEnchere = Number((document.getElementById('seltemps') as  HTMLInputElement ).value);
-
-      if((document.getElementById('checkres') as  HTMLInputElement ).checked){
-        this.prod.prixReserve = Number((document.getElementById('inputres') as  HTMLInputElement ).value);
-      }
 
     } else {
       this.disabled = true;
