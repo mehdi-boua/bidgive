@@ -130,8 +130,8 @@ public class ProduitService {
         n.setTitre("Enchère remportée !");
         n.setMessage("Félicitations!!!\n" +
                 "Vous avez remporté l'enchère pour "+ produit.getDesignation() + "\n" +
-                "Veuillez valider votre enchère, et prendre contact avec le donateur pour " +
-                "récupérer votre bien.");
+                "Veuillez valider votre enchère, et suivre les étapes pour " +
+                "récupérer votre bien en cliquant sur cette notification.");
 
         notificationService.save(n);
     }
