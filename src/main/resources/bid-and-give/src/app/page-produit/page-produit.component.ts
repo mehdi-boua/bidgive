@@ -63,7 +63,7 @@ export class PageProduitComponent implements OnInit{
 
   getImages() {
     this.listeImage= this.elemProduit.lienImages.split("|");
-    console.log(this.listeImage);
+    //console.log(this.listeImage);
   }
 
   getDonateur () {
@@ -73,7 +73,7 @@ export class PageProduitComponent implements OnInit{
   redirection(i: any){
     this.service.infoProduit = i;
     this.service.copiefiche = this.fiche;
-    console.log(this.fiche);
+    //console.log(this.fiche);
     //console.log(this.service.infoProduit);
     this.route.navigate(['encherir/']);
   }

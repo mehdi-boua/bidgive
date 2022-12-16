@@ -2,7 +2,14 @@
 @import '../../assets/button.scss';
 
 .wrapper {
+    margin-top : 30px;
     padding-left: 25px;
+
+    p {
+        margin-bottom : 15px;
+        font-weight: 500;
+        font-size: 16px;
+    }
 
     @media screen and (max-width: 360px) {
        padding-left: 10px;
