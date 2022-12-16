@@ -91,7 +91,7 @@ export class CardEnchereComponent implements OnInit {
       for(let i=0; i< this.filter.length; i++){
         if(this.filter[i].id == idProd){
           this.filter.splice(i, 1);
-          this.filter = this.filter!.reverse()
+          this.filter = this.filter
           break
         }
       }
