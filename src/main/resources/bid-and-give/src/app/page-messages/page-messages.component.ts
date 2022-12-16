@@ -108,4 +108,9 @@ export class PageMessagesComponent {
       document.getElementById("choix-relai")?.classList.add("hide2");
     }
   }
+
+  retour() {
+    document.getElementById("content")?.classList.remove("hide2");
+    document.getElementById("ct-livraison")?.classList.add("hide2");
+  }
 }

@@ -48,7 +48,7 @@
                     <p class="title"> {{item.titre}}
                         <span class="subtitle"> {{item.message.substring(0, 47) + "..."}}</span>
                     </p>
-                    <p class="hide2" id="texte{{index}}"> {{item.message}}</p>
+                    <p class="" id="texte{{index}}"> {{item.message}}</p>
                 </div>
 
                 <div class="infos">
@@ -61,6 +61,8 @@
     </div>
 
     <div class="content-livraison hide2" id="ct-livraison">
+        <img src="../../assets/images_app/icon-chevron-left.svg" (click)="retour()" class="retour"/>
+
         <p class="title">Félicitations, vous avez remporté l’enchère !</p>
         <p class="infos">Merci de bien vouloir choisir un mode de remise afin de finaliser le processus d’enchère.</p>
 
