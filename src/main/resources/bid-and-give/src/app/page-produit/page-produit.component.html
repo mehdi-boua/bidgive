@@ -170,7 +170,9 @@
     </div>
 
     <div class="footer">
-        <a class="contacter">Contacter</a>
+        <a class="contacter" (click)="openMsg()">Contacter</a>
         <a class="encherir" (click)="redirection(elemProduit)"> Encherir</a>
     </div>
+
+    <app-message class="hide" id="modal" (close)="close()" destinataire="{{fiche.donateurPseudo}}"></app-message>
 </div>

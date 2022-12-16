@@ -78,6 +78,14 @@ export class PageProduitComponent implements OnInit{
     this.route.navigate(['encherir/']);
   }
 
+  openMsg() {
+    document.getElementById("modal")?.classList.remove("hide");
+  }
+
+  close() {
+    document.getElementById("modal")?.classList.add("hide");
+  }
+
   fav(idProd: number){
     if(this.service.user.length != 0){
       this.http.post("/api/fav/new", {

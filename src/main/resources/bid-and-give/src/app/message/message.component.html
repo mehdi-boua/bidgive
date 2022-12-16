@@ -1,0 +1,16 @@
+<div class="modal-message">
+    <div class="line1">
+        <p class="title">Votre conversation avec {{destinataire }}</p>
+        <img src="../../assets/images_app/icon-close.svg"  alt="icon close modal" (click)="this.close.emit()"/>
+    </div>
+
+    <div class="messages" id="container-msg">
+
+    </div>
+
+    <div class="entries">
+        <input class="input" type="text" name="msg" id="msg"/>
+        <input class="submit" type="submit" value="Envoyer" (click)="getInput()"/>
+    </div>
+
+</div>

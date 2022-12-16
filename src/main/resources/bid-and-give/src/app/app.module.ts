@@ -25,6 +25,7 @@ import { PageMdpComponent } from './page-mdp/page-mdp.component';
 import { MapComponent } from './map/map.component';
 import { PageEncherirComponent } from './page-encherir/page-encherir.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { MessageComponent } from './message/message.component';
 
 
 @NgModule({
@@ -45,7 +46,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     PageMdpComponent,
     MapComponent,
     PageEncherirComponent, 
-    SafePipe
+    SafePipe, MessageComponent
   ],
   imports: [
     BrowserModule,

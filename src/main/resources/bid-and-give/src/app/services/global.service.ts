@@ -56,4 +56,6 @@ export class GlobalService {
     ]
 
     copiefiche : Fiche = new Fiche()
+
+    tempoMessage : string[] = [];
 }
