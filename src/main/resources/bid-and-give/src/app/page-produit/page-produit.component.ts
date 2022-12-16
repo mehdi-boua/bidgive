@@ -72,8 +72,9 @@ export class PageProduitComponent implements OnInit{
 
   redirection(i: any){
     this.service.infoProduit = i;
-    console.log(i);
-    console.log(this.service.infoProduit);
+    this.service.copiefiche = this.fiche;
+    console.log(this.fiche);
+    //console.log(this.service.infoProduit);
     this.route.navigate(['encherir/']);
   }
 
@@ -90,6 +91,7 @@ export class PageProduitComponent implements OnInit{
       });
     }
   }
+
   unfav(idProd: number){
     if(this.service.user.length != 0){
       this.http.request('delete',"/api/fav/delete",{body:{

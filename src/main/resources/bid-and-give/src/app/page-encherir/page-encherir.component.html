@@ -10,7 +10,7 @@
                     <img  class="card-produit__img" src="{{produit.lienImages}}" />
                     <p class="card-produit__name">{{produit.designation}}</p>
                 </div>
-                <p class="card-produit__price">{{produit.prixDepart}}€</p>
+                <p class="card-produit__price">{{fiche.meilleurEnchere}}€</p>
             </div>
 
             <div class="bloc-infos">
@@ -22,25 +22,25 @@
                 <p class="bloc-infos__bid">
                     <img src="./assets/images_app/icon-bid.svg">
                     Nombres d'enchères : <span *ngIf="produit != undefined ">
-                        0</span>
+                        {{fiche.nbParticipants}}</span>
                 </p>
 
                 <p class="bloc-infos__user">
                     <img src="./assets/images_app/icon-profile.svg">
-                    Meilleur enchérisseur: <span> TODO </span>
+                    Meilleur enchérisseur: <span> {{fiche.nomMeilleurEncherisseur}} </span>
                 </p>
 
                 <p class="bloc-infos__price">
                     <img src="./assets/images_app/icon-price.svg">
-                    Enchère minimum: <span> {{produit.prixDepart+1}}€ </span>
+                    Enchère minimum: <span> {{fiche.meilleurEnchere+1}}€ </span>
                 </p>
             </div>
 
             <div class="asso">
                 Si vous remportez cette enchère les gains seront reversés à l'association : 
                 <p>
-                    {{name[produit.idAssociation]}}
                     <img src="{{logo[produit.idAssociation]}}"/>
+                    {{name[produit.idAssociation]}}
                 </p>
             </div>
 

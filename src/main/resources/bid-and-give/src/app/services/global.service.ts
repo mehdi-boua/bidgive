@@ -2,6 +2,7 @@ import { OnInit } from "@angular/core";
 import catalogue from "../../assets/bd_catalogue.json";
 import { association } from "../Interfaces/association";
 import { categorie } from "../Interfaces/categorie";
+import { Fiche, fiche } from "../Interfaces/fiche";
 import { user } from "../Interfaces/user";
 
 export class GlobalService {
@@ -53,4 +54,6 @@ export class GlobalService {
             type: "info", title : "Enchère en cours ", description:"Table : Votre enchère n'est désormais plus la meilleur", texte:"Rendez-vous dans vos favoris pour surenchérir de nouveau.", date :"10 nov.", enchere:"Table", image :"./assets/images_app/icon-hour-black.svg", statut :"lu"
         }
     ]
+
+    copiefiche : Fiche = new Fiche()
 }
