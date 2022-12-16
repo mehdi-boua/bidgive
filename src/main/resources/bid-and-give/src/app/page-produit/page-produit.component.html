@@ -20,7 +20,7 @@
                 {{elemProduit.designation}}</p>
 
             <div class="bloc-general__options">
-                <img class="bloc-general__options-hearth" src="./assets/images_app/icon-hearth-stroke.svg" />
+                <img class="bloc-general__options-hearth" src="./assets/images_app/icon-hearth-stroke.svg" id="fav" (click)="fav(elemProduit.id)"/>
                 <img class="bloc-genral__options-share" src="./assets/images_app/icon-share.svg" />
             </div>
         </div>

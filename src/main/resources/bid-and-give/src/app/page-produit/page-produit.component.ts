@@ -77,4 +77,27 @@ export class PageProduitComponent implements OnInit{
     this.route.navigate(['encherir/']);
   }
 
+  fav(idProd: number){
+    if(this.service.user.length != 0){
+      this.http.post("/api/fav/new", {
+        "idUser": this.service.user[0].id,
+        "idProduit": idProd
+      },{observe:'response'}).subscribe(data=>{
+        (document.querySelector("#fav")!as HTMLImageElement).src = "/assets/images_app/icon-hearth-full.svg"
+      },
+      () =>{
+        this.unfav(idProd)
+      });
+    }
+  }
+  unfav(idProd: number){
+    if(this.service.user.length != 0){
+      this.http.request('delete',"/api/fav/delete",{body:{
+        "idUser": this.service.user[0].id,
+        "idProduit": idProd}
+      }).subscribe(()=>{
+        (document.querySelector("#fav")!as HTMLImageElement).src = "/assets/images_app/icon-hearth-stroke.svg"
+      });
+    }
+  }
 }

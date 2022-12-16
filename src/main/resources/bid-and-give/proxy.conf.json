@@ -1,6 +1,6 @@
 {
     "/api/*":{
-        "target": "http://localhost:8080/api",
+        "target": "https://bid-give.herokuapp.com/api",
         "secure": false,
         "pathRewrite":{ "/api" : ""},
         "changeOrigin": true,
