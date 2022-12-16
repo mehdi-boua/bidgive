@@ -40,21 +40,32 @@ export class PageMessagesComponent {
   notifList = this.global.notifications;
 
   notifs: notification[] = []
+  identifiant : number = 0;
+  expediteur : string = "";
 
   filtre(){
     this.messages = !this.messages;
     this.varencours = !this.varencours;
   }
 
-  toggleMessage(index: number) {
+  openMsg(id: number, exp : string) {
+    this.identifiant = id;
+    this.expediteur = exp;
+    document.getElementById("modalmsg"+id)!.classList.remove("hide2");
+  }
+
+  Close(id? : number) {
+    document.getElementById("container-msg")!.innerHTML="";
+    document.getElementById("modalmsg"+id)!.classList.add("hide2");
+  }
+
+  /* toggleMessage(index: number) {
     if(document.querySelector("#texte"+index)?.classList.contains('hide')) {
       (document.querySelector("#texte"+index) as HTMLElement).classList.remove('hide');
     } else {
       (document.querySelector("#texte"+index) as HTMLElement)?.classList.add('hide');
-    }
-    
-    
-  }
+    } 
+  } */
 
   toggleNotification(index : number, idNotif: number) {
     if(document.querySelector("#texte"+index)?.classList.contains('hide')) {
