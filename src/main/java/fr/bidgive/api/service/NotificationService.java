@@ -11,7 +11,7 @@ public class NotificationService {
     NotificationRepo notificationRepo;
 
     public Iterable<Notification> getNotifs(final int idUser){
-        return notificationRepo.findAll();
+        return notificationRepo.userNotifs(idUser);
     }
 
     public void markRead(final int idNotif){
