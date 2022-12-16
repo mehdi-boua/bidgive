@@ -1,5 +1,5 @@
 <div class="encheres__bloc" >
-    <div *ngFor="let item of filter!.reverse(); let index = index;" class="encheres-item">
+    <div *ngFor="let item of filter.reverse(); let index = index;" class="encheres-item">
         <div class="item-image" (click)="redirectionFiche(item)">
             <figure *ngIf=" item.lienImages != ''">
                 <img src={{item.lienImages}} alt="image produit"/>
@@ -24,7 +24,7 @@
 
                 <div class="option">
                     <div *ngIf='item.idLivrison == true' class="option-livraison"> Livraison</div>
-                    <button class="option-hearth" [ngClass]="{'full' : full =='true'}"></button>
+                    <button class="option-hearth" [ngClass]="{'full' : full =='true'}" (click)="(fav(item.id))"></button>
                 </div>
             </div>
         </div>

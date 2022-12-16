@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { AbsoluteSourceSpan } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { first } from 'rxjs';
 import catalogue from "../../assets/bd_catalogue.json";
 import { association } from '../Interfaces/association';
 import { categorie } from '../Interfaces/categorie';
@@ -38,7 +39,7 @@ export class CardEnchereComponent implements OnInit {
     })
   }
   
-  @Input() filter?: produit[] ;
+  @Input() filter: produit[] = [];
   @Input() full : string ="";
   association : association[] = [];
   categories : categorie[] = [];
@@ -66,5 +67,33 @@ export class CardEnchereComponent implements OnInit {
     console.log(i);
     console.log(this.service.infoProduit);
     this.route.navigate(['/produit/'+i.id]);
+  }
+
+  fav(idProd: number){
+    if(this.service.user.length != 0){
+      this.http.post("/api/fav/new", {
+        "idUser": this.service.user[0].id,
+        "idProduit": idProd
+      },{observe:'response'}).subscribe(data=>{},
+      () =>{
+        this.unfav(idProd)
+      });
+    }
+  }
+  unfav(idProd: number){
+    if(this.service.user.length != 0){
+      this.http.request('delete',"/api/fav/delete",{body:{
+        "idUser": this.service.user[0].id,
+        "idProduit": idProd}
+      }).subscribe(()=>{
+        this.route.navigateByUrl("/mes-favoris")
+      });
+      for(let i=0; i< this.filter.length; i++){
+        if(this.filter[i].id == idProd){
+          this.filter.splice(i, 1);
+          break
+        }
+      }
+    }
   }
 }

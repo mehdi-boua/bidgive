@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ɵɵpureFunction2 } from '@angular/core';
 import { Router } from '@angular/router';
 import catalogue from "../../assets/bd_catalogue.json";
+import { produit } from '../Interfaces/produit';
 import { user } from '../Interfaces/user';
 import { GlobalService } from '../services/global.service';
 
@@ -23,6 +24,14 @@ export class PageFavorisComponent implements OnInit {
         }
       })
     }
+
+    if(this.global.user.length != 0){
+      var url = "/api/fav/"+this.global.user[0].id
+      this.http.get<produit[]>(url).subscribe(data => {
+        data.forEach(prod => this.favoris.push(prod))
+        console.log("favs")
+      })
+    }
   }
 
   catalogue = catalogue;
@@ -30,6 +39,7 @@ export class PageFavorisComponent implements OnInit {
   listefav = this.listeFav();
   varencours: boolean = true;
   varexpirees: boolean = false;
+  favoris: produit[] = [];
 
   enCours(){
     this.varencours = true;
