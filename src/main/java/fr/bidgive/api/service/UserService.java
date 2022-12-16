@@ -3,6 +3,7 @@ package fr.bidgive.api.service;
 import fr.bidgive.api.model.Produit;
 import fr.bidgive.api.model.User;
 import fr.bidgive.api.repository.UserRepo;
+import fr.bidgive.classes.Authentification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,10 +21,11 @@ public class UserService {
         return  userRepo.findById(idUser);
     }
 
-    public Optional<User> getUser(User user){
-        if(user.getPseudo() != null)
-            return userRepo.getUserByPseudo(user.getPseudo());
-        return userRepo.getUserByMail(user.getMail());
+    public Optional<User> getUser(Authentification auth){
+        Optional<User> u = userRepo.getUserByPseudo(auth.getIdentifiant());
+        if(u.isPresent())
+            return u;
+        return userRepo.getUserByMail(auth.getIdentifiant());
     }
 
     public Optional<User> getUser(String mail){

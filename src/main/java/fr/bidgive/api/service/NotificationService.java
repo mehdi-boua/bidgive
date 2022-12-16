@@ -10,8 +10,12 @@ public class NotificationService {
     @Autowired
     NotificationRepo notificationRepo;
 
-    public Iterable<Notification> getNotifs(){
+    public Iterable<Notification> getNotifs(final int idUser){
         return notificationRepo.findAll();
+    }
+
+    public void markRead(final int idNotif){
+        notificationRepo.markRead(idNotif);
     }
 
     public Notification save(Notification notification){

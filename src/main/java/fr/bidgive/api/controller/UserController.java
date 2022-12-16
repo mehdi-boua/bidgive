@@ -1,10 +1,13 @@
 package fr.bidgive.api.controller;
 
 import fr.bidgive.api.controller.returnBeans.UserReturn;
+import fr.bidgive.api.model.Notification;
 import fr.bidgive.api.model.Produit;
 import fr.bidgive.api.model.User;
+import fr.bidgive.api.service.NotificationService;
 import fr.bidgive.api.service.ProduitService;
 import fr.bidgive.api.service.UserService;
+import fr.bidgive.classes.Authentification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -21,9 +24,10 @@ import java.util.Optional;
 public class UserController {
     @Autowired
     UserService userService;
-
     @Autowired
     ProduitService ps;
+    @Autowired
+    NotificationService ns;
 
 
     @GetMapping("/{id}")
@@ -56,14 +60,14 @@ public class UserController {
 
     @CrossOrigin(origins = "*")
     @PostMapping("/auth")
-    public ResponseEntity auth(@RequestBody User user, HttpServletRequest request){
-        Optional<User> u = userService.getUser(user);
+    public ResponseEntity auth(@RequestBody Authentification auth, HttpServletRequest request){
+        Optional<User> u = userService.getUser(auth);
 
         if(u.isEmpty()){
             return ResponseEntity.badRequest().build();
         }
         User usr = u.get();
-        if(!usr.getPassword().equals(user.getPassword())){
+        if(!usr.getPassword().equals(auth.getMdp())){
             return ResponseEntity.noContent().build();
         }
 
@@ -176,5 +180,14 @@ public class UserController {
             return ResponseEntity.internalServerError().build();
 
         return ResponseEntity.ok().build();
+    }
+
+    @CrossOrigin(origins = "*")
+    @GetMapping("/notifs")
+    public Iterable<Notification> notifications(HttpServletRequest request){
+        if(request.getSession().getAttribute("idUser") == null)
+            return null;
+        int idUser = (int) request.getSession().getAttribute("idUser");
+        return ns.getNotifs(idUser);
     }
 }
