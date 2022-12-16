@@ -2,13 +2,13 @@ package fr.bidgive.api.model;
 
 import lombok.Data;
 import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 
 import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name="notifications")
-public class Notification {
+public @Table(name="notifications") class Notification {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @org.springframework.data.annotation.Id

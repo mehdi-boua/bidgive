@@ -87,12 +87,11 @@ public class ProduitService {
         return produitRepo.nbDonations(idUser);
     }
 
-    @Scheduled(cron = "0 0 * * * *")
+    @Scheduled(cron = "0 */1 * * * *")
     private void updateEtat(){
         Iterable<Produit> produits = getAllActive();
         for(Produit p: produits){
             long elapsedTime = (System.currentTimeMillis() - p.getDebutEnchere().getTime()) /  (3600 * 1000);
-            System.out.println(elapsedTime);
 
             if(elapsedTime >= p.getDureeEnchere()){
                 Optional<Enchere> e = enchereService.getEnchere(p.getId());
@@ -101,7 +100,8 @@ public class ProduitService {
                     enchere.setEtat(0);
                     enchereService.saveEnchere(enchere);
 
-                    informWinner(enchere);                }
+                    informWinner(enchere);
+                }
             }
         }
 
