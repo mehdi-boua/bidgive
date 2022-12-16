@@ -91,7 +91,12 @@ public class ProduitService {
     private void updateEtat(){
         Iterable<Produit> produits = getAllActive();
         for(Produit p: produits){
-            long elapsedTime = (System.currentTimeMillis() - p.getDebutEnchere().getTime()) /  (3600 * 1000);
+            long elapsedTime;
+            if(p.getDureeEnchere() == 5){
+                elapsedTime = (System.currentTimeMillis() - p.getDebutEnchere().getTime()) /  (60 * 1000);
+            }else{
+                elapsedTime = (System.currentTimeMillis() - p.getDebutEnchere().getTime()) /  (3600 * 1000);
+            }
 
             if(elapsedTime >= p.getDureeEnchere()){
                 Optional<Enchere> e = enchereService.getEnchere(p.getId());
