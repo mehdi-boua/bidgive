@@ -86,7 +86,7 @@ export class CardEnchereComponent implements OnInit {
         "idUser": this.service.user[0].id,
         "idProduit": idProd}
       }).subscribe(()=>{
-        this.route.navigateByUrl("/mes-favoris")
+        // élément retiré des favoris
       });
       for(let i=0; i< this.filter.length; i++){
         if(this.filter[i].id == idProd){
