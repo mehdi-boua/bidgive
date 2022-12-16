@@ -29,6 +29,8 @@ export class PageMessagesComponent {
         data.forEach(notif => this.notifs.push(notif))
       })
     }
+
+    this.adresse = this.global.user[0].adresse
   }
 
   messages : boolean = false;
@@ -42,6 +44,7 @@ export class PageMessagesComponent {
   notifs: notification[] = []
   identifiant : number = 0;
   expediteur : string = "";
+  adresse : string = "";
 
   filtre(){
     this.messages = !this.messages;
@@ -67,7 +70,7 @@ export class PageMessagesComponent {
     } 
   } */
 
-  toggleNotification(index : number, idNotif: number) {
+  /*toggleNotification(index : number, idNotif: number) {
     if(document.querySelector("#texte"+index)?.classList.contains('hide')) {
       (document.querySelector("#texte"+index) as HTMLElement).classList.remove('hide');
     } else {
@@ -75,5 +78,34 @@ export class PageMessagesComponent {
     }
 
     this.http.request('post', "/api/notif/read", {body: idNotif}).subscribe()
+  } */
+
+  Livraison(){
+    //console.log("click");
+    document.getElementById("content")?.classList.add("hide2");
+    document.getElementById("ct-livraison")?.classList.remove("hide2");
+  }
+
+  choix() {
+    let res = (document.querySelector('input[name=choix]:checked') as HTMLInputElement).value;
+    //console.log((document.querySelector('input[name=choix]:checked') as HTMLInputElement).value);
+ 
+      if (res =="remise") {
+        document.getElementById("livraison")?.classList.add("hide2");
+        document.getElementById("remise")?.classList.remove("hide2");
+      } else if (res =="livraison") {
+        document.getElementById("livraison")?.classList.remove("hide2");
+        document.getElementById("paiement")?.classList.remove("hide2");
+        document.getElementById("remise")?.classList.add("hide2");
+      }
+  }
+
+  mode() {
+    console.log((document.getElementById("select") as HTMLSelectElement).value);
+    if((document.getElementById("select") as HTMLSelectElement).value == "relai") {
+      document.getElementById("choix-relai")?.classList.remove("hide2");
+    } else if ((document.getElementById("select") as HTMLSelectElement).value == "domicile") {
+      document.getElementById("choix-relai")?.classList.add("hide2");
+    }
   }
 }

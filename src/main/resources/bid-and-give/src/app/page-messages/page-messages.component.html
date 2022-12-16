@@ -1,58 +1,121 @@
 <app-header title="Mes messages"></app-header>
 
-<div class="content">
-    <div class="container">
-        <button [ngClass]="{'active': varencours == true, 'not-active': varencours == false}" (click)="filtre()"> Messages</button>
-        <button [ngClass]="{'active': varencours == false, 'not-active': varencours == true}" (click)="filtre()"> Notifications</button>
-    </div>
-    <!-- <p class="info">Cliquez pour afficher le contenu supplémentaire</p> -->
+<div class="page-messages">
+    <div class="content" id="content">
+        <div class="container">
+            <button [ngClass]="{'active': varencours == true, 'not-active': varencours == false}" (click)="filtre()">
+                Messages</button>
+            <button [ngClass]="{'active': varencours == false, 'not-active': varencours == true}" (click)="filtre()">
+                Notifications</button>
+        </div>
+        <p class="info">Cliquez pour afficher le contenu supplémentaire</p>
 
-    <div *ngIf="messages ==true" class="content__messages">
-        <div *ngFor="let item of messagesList; let index=index" class="content__messages-item" [ngClass]="{'non-lu' : item.statut != 'lu'}" (click)="openMsg(index, item.expediteur)">
-            <figure class="figure">
-                <img src="{{item.image}}"  class="figure__image"/>
-            </figure>
+        <div *ngIf="messages ==true" class="content__messages">
+            <div *ngFor="let item of messagesList; let index=index" class="content__messages-item"
+                [ngClass]="{'non-lu' : item.statut != 'lu'}" (click)="openMsg(index, item.expediteur)">
+                <figure class="figure">
+                    <img src="{{item.image}}" class="figure__image" />
+                </figure>
 
-            <div class="bloc-text">
-                <p class="title"> {{item.expediteur}}
-                    <span class="subtitle"> {{item.enchere}}</span>
-                </p>
-                <p class="hide2" id="texte{{index}}"><span *ngFor="let msg of item.msg"> {{msg}}</span></p>
+                <div class="bloc-text">
+                    <p class="title"> {{item.expediteur}}
+                        <span class="subtitle"> {{item.enchere}}</span>
+                    </p>
+                    <p class="hide2" id="texte{{index}}"><span *ngFor="let msg of item.msg"> {{msg}}</span></p>
+                </div>
+
+                <div class="infos">
+                    <p class="date"> {{item.date}}</p>
+                    <div *ngIf="item.statut != 'lu'" class="elem-notif">
+                        <img src="./assets/images_app/icon-mail-purple.svg" class="icon" />
+                        <span class="notif">{{item.msg.length}}</span>
+                    </div>
+                </div>
             </div>
 
-            <div class="infos">
-                <p class="date"> {{item.date}}</p>
-                <div  *ngIf="item.statut != 'lu'" class="elem-notif">
-                    <img src="./assets/images_app/icon-mail-purple.svg" class="icon"/>
-                    <span class="notif">{{item.msg.length}}</span>
+            <app-message class="hide2" id="modalmsg{{identifiant}}" (close)="Close(identifiant)"
+                destinataire="{{expediteur}}"></app-message>
+        </div>
+
+        <div *ngIf="messages==false" class="content__notification">
+            <div *ngFor="let item of notifs; let index=index" class="content__notification-item"
+                [ngClass]="{'non-lu' : item.etat == 0}" (click)="Livraison()">
+                <figure class="figure">
+                    <img src="./assets/images_app/icon-checked.svg" class="figure__image" />
+                </figure>
+
+                <div class="bloc-text">
+                    <p class="title"> {{item.titre}}
+                        <span class="subtitle"> {{item.message.substring(0, 47) + "..."}}</span>
+                    </p>
+                    <p class="hide2" id="texte{{index}}"> {{item.message}}</p>
+                </div>
+
+                <div class="infos">
+                    <p class="date"> 15 dec.</p>
                 </div>
             </div>
         </div>
 
-        <app-message class="hide2" id="modalmsg{{identifiant}}" (close)="Close(identifiant)" destinataire="{{expediteur}}"></app-message>
+
     </div>
 
-    <div *ngIf="messages==false"class="content__notification">
-        <div *ngFor="let item of notifs; let index=index"  class="content__notification-item"  [ngClass]="{'non-lu' : item.etat == 0}" (click)="toggleNotification(index, item.id)">
-            <figure class="figure">
-                <img src="./assets/images_app/icon-checked.svg"  class="figure__image"/>
-            </figure>
+    <div class="content-livraison hide2" id="ct-livraison">
+        <p class="title">Félicitations, vous avez remporté l’enchère !</p>
+        <p class="infos">Merci de bien vouloir choisir un mode de remise afin de finaliser le processus d’enchère.</p>
 
-            <div class="bloc-text">
-                <p class="title"> {{item.titre}}
-                    <span class="subtitle"> {{item.message.substring(0, 47) + "..."}}</span>
-                </p>
-                <p class="hide2" id="texte{{index}}"> {{item.message}}</p>
+        <div class="choix-input">
+            <div>
+                <label for="choix">Remise en main propre</label>
+                <input type="radio" id="choix" name="choix" value="remise" (click)="choix()">
             </div>
 
-            <div class="infos">
-                <p class="date"> 15 dec.</p>
+            <div>
+                <label for="choix">Livraison</label>
+                <input type="radio" id="choix" name="choix" value="livraison" (click)="choix()">
             </div>
         </div>
 
+        <div class="remise hide2" id="remise">
+            <p>
+                Vous avez choisi la remise en main propre, nous vous prions de prendre contact avec le donateur afin de convenir d'un rendez-vous.
+            </p>
+        </div>
+
+        <div class="livraison hide2" id="livraison">
+            <fieldset class="fieldset">
+                <legend>Mode de remise *</legend>
+
+                <select (change)="mode()" id="select" class="select" required name="selectcategorie">
+                    <option value="domicile">A domicile - 9€99</option>
+                    <option value="relai">Mondial Relay - 3€99</option>
+                </select>
+            </fieldset>
+        </div>
+
+        <div class="choix-relai hide2" id="choix-relai">
+            <p class="title">Trouver les points relais autour de :</p>
+            <input class="input" type="text" value="{{adresse}}"/>
+
+            <div class="item">
+                <input type="radio" id="relai" name="relai" value="" (click)="choix()">
+                <label for="relai">Auchan <span>24 place de l’Imagination 69500 Bron</span></label>
+            </div>
+
+            <div class="item">
+                <input type="radio" id="relai" name="relai" value="" (click)="choix()">
+                <label for="relai"> Mon Super Livre<span>02 rue de l’Ennui 69500 Bron</span></label>
+            </div>
+
+            <div class="item">
+                <input type="radio" id="relai" name="relai" value="" (click)="choix()">
+                <label for="relai"> ABC Petit Commerce <span>13 rue de la Fraternité 69500 Bron</span></label>
+            </div>
+        </div>
+
+        <button class="paiement hide2" id="paiement">Payer</button>
     </div>
+
 </div>
-
-
 
 <app-user-nav></app-user-nav>

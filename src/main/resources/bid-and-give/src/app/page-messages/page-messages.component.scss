@@ -1,144 +1,259 @@
 @import '../../assets/vars.scss';
 @import '../../assets/button.scss';
 
-.content {
-    .info {
-        margin: 0 3vw;
-    }
-
-    &__messages,
-    &__notification {
-        &-item {
-            position: relative;
-            display: flex;
-            margin: 30px 3vw 0;
-            padding: 15px 15px 20px 15px;
-            width: 50vw;
-            background-color: rgba($black, .05);
-            border-radius: 8px;
-           
-
-            .figure {
-                &__image {
-                    width: 120px;
-                    height: 120px;
-
-                    @media screen and (max-width: 480px) {
-                        width: 100px;
-                        height: 100px;
-                    }
-
-                    @media screen and (max-width: 360px) {
-                        width: 75px;
-                        height: 75px;
-                    }
-                }
-            }
-
-            .bloc-text {
-                margin: 0 0 0 25px;
-            }
-
-            .title {
-                margin: 0;
-                min-width: 15vw;
-                font-size: 20px;
-                color: black;
-
-                @media screen and (max-width: 480px) {
-                    font-size: 18px;
-                }
-            }
-
-            .subtitle {
-                display: block;
-                font-size: 18px;
-                color: $dark-grey;
-
-                @media screen and (max-width: 480px) {
-                    font-size: 16px;
-                }
-            }
-
-            .infos {
-                display: flex;
-                flex-direction: column;
-                align-items: flex-end;
-                justify-content: space-between;
-                margin-left: 40px;
-
-                .date {
-                    margin: 0;
-                    font-size: 15px;
-                    color: $dark-grey;
-
-                    @media screen and (max-width: 480px) {
-                        font-size: 13px;
-                    }
-                }
-            }
-
-            .elem-notif {
+.page-messages {
+    .content {
+        .info {
+            margin: 0 3vw;
+        }
+    
+        &__messages,
+        &__notification {
+            &-item {
                 position: relative;
-                margin-right: 5px;            
-
-                .icon {
-                    width: 21px;
-                    height: 21px;
+                display: flex;
+                margin: 30px 3vw 0;
+                padding: 15px 15px 20px 15px;
+                width: 50vw;
+                background-color: rgba($black, .05);
+                border-radius: 8px;
+               
+    
+                .figure {
+                    &__image {
+                        width: 120px;
+                        height: 120px;
+    
+                        @media screen and (max-width: 480px) {
+                            width: 100px;
+                            height: 100px;
+                        }
+    
+                        @media screen and (max-width: 360px) {
+                            width: 75px;
+                            height: 75px;
+                        }
+                    }
                 }
-
-                .notif {
-                    position: absolute;
+    
+                .bloc-text {
+                    margin: 0 0 0 25px;
+                }
+    
+                .title {
+                    margin: 0;
+                    min-width: 15vw;
+                    font-size: 20px;
+                    color: black;
+    
+                    @media screen and (max-width: 480px) {
+                        font-size: 18px;
+                    }
+                }
+    
+                .subtitle {
+                    display: block;
+                    font-size: 18px;
+                    color: $dark-grey;
+    
+                    @media screen and (max-width: 480px) {
+                        font-size: 16px;
+                    }
+                }
+    
+                .infos {
                     display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    height: 16px;
-                    width: 16px;
-                    background-color: $red;
-                    border-radius: 50px;
-                    top: -5px;
-                    transform: translateX(10px);
-                    color: $white;
-                    font-size: 11px;
-                    font-weight: 500;
+                    flex-direction: column;
+                    align-items: flex-end;
+                    justify-content: space-between;
+                    margin-left: 40px;
+    
+                    .date {
+                        margin: 0;
+                        font-size: 15px;
+                        color: $dark-grey;
+    
+                        @media screen and (max-width: 480px) {
+                            font-size: 13px;
+                        }
+                    }
+                }
+    
+                .elem-notif {
+                    position: relative;
+                    margin-right: 5px;            
+    
+                    .icon {
+                        width: 21px;
+                        height: 21px;
+                    }
+    
+                    .notif {
+                        position: absolute;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        height: 16px;
+                        width: 16px;
+                        background-color: $red;
+                        border-radius: 50px;
+                        top: -5px;
+                        transform: translateX(10px);
+                        color: $white;
+                        font-size: 11px;
+                        font-weight: 500;
+                    }
+                }
+    
+                &::after {
+                    content: '';
+                    position: absolute;
+                    display: block;
+                    bottom: -15px;
+                    width: 100%;
+                    height: .5px;
+                    background-color: rgba($black, .2);
+                    transform:translateX(-10px);
+                }
+    
+                @media screen and (max-width: 1023px) {
+                    width: 75vw;
                 }
             }
-
-            &::after {
-                content: '';
-                position: absolute;
+    
+            .non-lu {
+                background-color: $light-purple;
+            }
+        }
+    
+        &__notification {
+            .figure {
+                img {
+                    width: 25px;
+                    height: 25px;
+                }
+            }
+    
+            span {
                 display: block;
-                bottom: -15px;
-                width: 100%;
-                height: .5px;
-                background-color: rgba($black, .2);
-                transform:translateX(-10px);
             }
-
-            @media screen and (max-width: 1023px) {
-                width: 75vw;
-            }
-        }
-
-        .non-lu {
-            background-color: $light-purple;
-        }
-    }
-
-    &__notification {
-        .figure {
-            img {
-                width: 35px;
-                height: 35px;
-            }
-        }
-
-        span {
-            display: block;
         }
     }
 
     .hide2 {
         display: none;
+    }
+
+    .content-livraison {
+        margin: 15px 3vw 110px;
+
+        .title {
+            font-size: 20px;
+            font-weight: 400;
+            color: $primary;
+            margin-bottom: 10px;
+        }
+
+        .choix-input {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 25px;
+            font-size: 16px;
+            font-weight: 500;
+            margin-top: 25px;
+
+            label {
+                margin-right : 15px;
+            }
+        }
+
+        .remise {
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        fieldset {
+            margin-top: 20px;
+            border-radius : 12px;
+
+            select {
+                border: 0;
+                min-height: 25px;
+                width: 80%;
+                font-size: 16px;
+            }
+        }
+
+        .paiement {
+            color: $white;
+            background-color: $primary;
+            padding: 8px ;
+            border-radius: 100px;
+            margin: 25px auto 0;
+            width: 100%;
+            font-size: 16px;
+        }
+    }
+
+    .choix-relai {
+        margin-top: 25px; 
+        font-size: 16px;
+        .title {
+            font-size: 16px;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+
+        .input {
+            border: .5px solid $dark-grey;
+            min-height: 35px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            font-size: 16px;
+            padding-left: 5px;
+        }
+
+        .item {
+            margin-bottom: 25px;
+        }
+
+        label {
+            margin-left: 15px;
+        }
+
+        span {
+            margin-left: 35px;
+            display: block; 
+            color: rgba($dark-grey, .6);
+        }
+    }
+
+    input[type='radio']:after {
+        width: 15px;
+        height: 15px;
+        border-radius: 15px;
+        top: -2px;
+        left: -1px;
+        position: relative;
+        background-color: $white;
+        content: '';
+        display: inline-block;
+        visibility: visible;
+        border: 1px solid $dark-grey;
+    }
+
+    input[type='radio']:checked:after {
+        width: 15px;
+        height: 15px;
+        border-radius: 15px;
+        top: -2px;
+        left: -1px;
+        position: relative;
+        background-color: $primary;
+        content: '';
+        display: inline-block;
+        visibility: visible;
+        border: 1px solid $dark-grey;
     }
 }
