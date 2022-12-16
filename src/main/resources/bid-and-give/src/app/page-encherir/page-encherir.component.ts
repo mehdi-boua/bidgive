@@ -53,9 +53,10 @@ export class PageEncherirComponent {
   montant : number = 0;
   @Input() activated: boolean =false;
   etape: boolean = false;
+  fiche = this.service.copiefiche;
 
   verifMontant(e : Event) {
-    if(this.montant > this.produit.prixDepart) {
+    if(this.montant > this.fiche.meilleurEnchere) {
       this.activated = true;
       (document.querySelector('#error') as HTMLElement).innerHTML= "";
     } else {
