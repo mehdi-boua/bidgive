@@ -79,6 +79,7 @@ export class PageInscriptionComponent {
           }, 2500)
       },
         error: error => {
+          document.querySelector("#existant")!.classList.remove('hide')
           this.errorMessage = error.message;
           console.error('There was an error!', error);
         }

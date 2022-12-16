@@ -32,20 +32,20 @@
     </div>
 
     <div *ngIf="messages==false"class="content__notification">
-        <div *ngFor="let item of notifList; let index=index"  class="content__notification-item"  [ngClass]="{'non-lu' : item.statut != 'lu'}" (click)="toggleNotification(index)">
+        <div *ngFor="let item of notifs; let index=index"  class="content__notification-item"  [ngClass]="{'non-lu' : item.etat == 0}" (click)="toggleNotification(index, item.id)">
             <figure class="figure">
-                <img src="{{item.image}}"  class="figure__image"/>
+                <img src="./assets/images_app/icon-checked.svg"  class="figure__image"/>
             </figure>
 
             <div class="bloc-text">
-                <p class="title"> {{item.title}}
-                    <span class="subtitle"> {{item.description}}</span>
+                <p class="title"> {{item.titre}}
+                    <span class="subtitle"> {{item.message.substring(0, 47) + "..."}}</span>
                 </p>
-                <p class="hide" id="texte{{index}}"> {{item.texte}}</p>
+                <p class="hide" id="texte{{index}}"> {{item.message}}</p>
             </div>
 
             <div class="infos">
-                <p class="date"> {{item.date}}.</p>
+                <p class="date"> 15 dec.</p>
             </div>
         </div>
 

@@ -18,7 +18,7 @@ export class PageConnexionComponent {
   connexion()  {
     console.log(this.mail);
     console.log(this.password);
-    this.http.post('/api/user/auth', {mail : this.mail, password : this.password}, {observe:'response'}).subscribe(
+    this.http.post('/api/user/auth', {identifiant : this.mail, mdp : this.password}, {observe:'response'}).subscribe(
       (data) => {
         console.log(data.status);
         if(data.status == 200) {
