@@ -22,10 +22,14 @@ export class PageConnexionComponent {
       (data) => {
         console.log(data.status);
         if(data.status == 200) {
-            sessionStorage.setItem('mdp', this.password);
-            this.route.navigate(['/mon-compte']);
-
+          document.querySelector("#error")?.classList.add("hide")  
+          sessionStorage.setItem('mdp', this.password);
+           this.route.navigate(['/mon-compte']);
+          
         }
+      },
+      err => {
+        document.querySelector("#error")?.classList.remove("hide")
       }
     );
   }
