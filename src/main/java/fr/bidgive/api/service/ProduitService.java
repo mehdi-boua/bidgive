@@ -45,13 +45,19 @@ public class ProduitService {
     }
 
     public Produit saveProduit(Produit produit){
-        Enchere enchere = new Enchere();
-        enchere.setIdProduit(produit.getId());
-        enchere.setValeur(produit.getPrixDepart() - 1);
-        enchere.setIdEnchereur(0);
-        enchere.setEtat(-1);
+        Produit p = produitRepo.save(produit);
 
-        return produitRepo.save(produit);
+        if(enchereService.getEnchere(p.getId()).isEmpty()) {
+            Enchere enchere = new Enchere();
+            enchere.setIdProduit(p.getId());
+            enchere.setValeur(p.getPrixDepart() - 1);
+            enchere.setIdEnchereur(0);
+            enchere.setEtat(-1);
+
+            enchereService.saveEnchere(enchere);
+        }
+
+        return p;
     }
 
     public FicheProduit getFiche(final int id){
@@ -59,7 +65,7 @@ public class ProduitService {
         Optional<Enchere> e = enchereService.getEnchere(id);
         Enchere enchere = e.orElse(null);
         String donateurPseudo = userService.getUser(produit.getIdDonateur()).get().getPseudo();
-        String meilleurEncherisseur = e.isPresent()
+        String meilleurEncherisseur = e.get().getIdEnchereur() != 0
                 ? userService.getUser(e.get().getIdEnchereur()).get().getPseudo()
                 : "Soyez le premier!";
 
@@ -105,7 +111,8 @@ public class ProduitService {
                     enchere.setEtat(0);
                     enchereService.saveEnchere(enchere);
 
-                    informWinner(enchere);
+                    if(enchere.getIdEnchereur() != 0)
+                        informWinner(enchere);
                 }
             }
         }

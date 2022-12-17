@@ -31,7 +31,9 @@ public class EnchereService {
     }
 
     public Enchere saveEnchere(Enchere enchere){
-        hes.saveHistorique(enchere);
+        if(enchere.getIdEnchereur() != 0)
+            hes.saveHistorique(enchere);
+
         return enchereRepo.save(enchere);
     }
 

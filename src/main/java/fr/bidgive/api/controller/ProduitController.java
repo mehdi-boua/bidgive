@@ -58,11 +58,10 @@ public class ProduitController {
             produit.setDescription("");
         if(produit.getLienImages() == null)
             produit.setLienImages("");
-        System.out.println("ici 1");
+
         produit.setIdDonateur((int)session.getAttribute("idUser"));
         produit.setDebutEnchere(new Timestamp(System.currentTimeMillis()));
         produit.setNomVille((String) session.getAttribute("ville"));
-        System.out.println("ici 1");
 
         Produit p = null;
         try {
@@ -83,9 +82,6 @@ public class ProduitController {
     @PostMapping("/{id}/desc/new")
     public ProduitDescription produitDescriptions(@RequestBody ProduitDescription prodDesc,
                                                             @PathVariable("id") final int idProduit){
-        System.out.println("here");
-        System.out.println(prodDesc);
-
         prodDesc.setIdProduit(idProduit);
 
         return prodDescService.save(prodDesc);
